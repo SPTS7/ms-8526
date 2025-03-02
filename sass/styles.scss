@@ -293,12 +293,12 @@ Hero
 }
 .fixed {
   position: fixed;
-  background-color: rgb(50, 44, 141);
+  background-color: rgba(50, 44, 141, 0.76);
   z-index: 999;
   width: 100%;
 }
 header {
-  padding: 10px 0; // Adjusted from 50px to 30px to change the vertical size
+  padding: 10px 0; // Adjusted from 50px to 10px to change the vertical size
   border-bottom: solid 1px rgba(255, 255, 255, 0.2);
   position: relative;
   width: 1170px;
