@@ -188,10 +188,10 @@ $(document).ready(function () {
         e.preventDefault();
         var data = $(this).serialize();
 
-        $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
+        $('#alert-wrapper').html(alert_markup('info', '<strong>Aguarda um segundo!</strong> Estamos a guardar os detalhes.'));
 
         if (parseInt($('#invite_code').val(), 10) !== 8526) {
-            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
+            $('#alert-wrapper').html(alert_markup('danger', '<strong>Desculpa!</strong> O teu código está incorreto.'));
         } else {
             $.post('https://script.google.com/macros/s/AKfycbxkWTZU1bukTVudfeGWqXy3H7vW-l2BrTFqU4lvCAMxeEkP2cAKPhKBcZIGchgXRD7BDg/exec', data)
                 .done(function (data) {
@@ -205,7 +205,7 @@ $(document).ready(function () {
                 })
                 .fail(function (data) {
                     console.log(data);
-                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Desculpa!</strong> Existe um erro com o servidor. Por favor tenta mais tarde.'));
                 });
         }
     });
