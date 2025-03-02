@@ -163,14 +163,14 @@ $(document).ready(function () {
             title: "Casamento da Matilde e do Simão",
 
             // Event start date
-            start: new Date('May 08, 2025 13:45'),
+            start: new Date('May 08, 2026 13:45'),
 
             // Event duration (IN MINUTES)
             // duration: 120,
 
             // You can also choose to set an end time
             // If an end time is set, this will take precedence over duration
-            end: new Date('May 09, 2025 04:00'),
+            end: new Date('May 09, 2026 04:00'),
 
             // Event Address
             address: 'Igreja Matriz de Espinho e Quinta Cardeal em Fajozes',
