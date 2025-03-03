@@ -894,20 +894,26 @@ body.modal-open {
   padding:25px;
 }
 
+/* ==========================================================================
+slides
+========================================================================== */
+
 /* Styling the area of the slides */
 #slideshow {
   overflow: hidden;
-  height: 510px;
-  width: 728px;
+  height: 50vh; /* Use viewport height for dynamic sizing */
+  width: 100%; /* Use full width of the screen */
+  max-width: 728px; /* Set a maximum width */
   margin: 0 auto;
 }
 
-/* Style each of the sides 
+/* Style each of the slides 
 with a fixed width and height */
 .slide {
   float: left;
-  height: 510px;
-  width: 728px;
+  height: 50vh; /* Use viewport height for dynamic sizing */
+  width: 100%; /* Use full width of the slideshow container */
+  max-width: 728px; /* Set a maximum width */
 }
 
 /* Add animation to the slides */
@@ -915,7 +921,8 @@ with a fixed width and height */
 
   /* Calculate the total width on the
   basis of number of slides */
-  width: calc(728px * 6);
+  width: calc(100% * 6);
+  max-width: calc(728px * 6); /* Set a maximum width */
 
   /* Specify the animation with the
   duration and speed */
@@ -955,30 +962,30 @@ for the slideshow */
   /* Calculate the margin-left for 
   each of the slides */
   0% {
-    margin-left: 0px;
+    margin-left: 0%;
   }
 
   16.67% {
-    margin-left: 0px;
+    margin-left: 0%;
   }
 
   33.33% {
-    margin-left: calc(-728px * 1);
+    margin-left: calc(-100% / 6 * 1);
   }
 
   50% {
-    margin-left: calc(-728px * 2);
+    margin-left: calc(-100% / 6 * 2);
   }
 
   66.67% {
-    margin-left: calc(-728px * 3);
+    margin-left: calc(-100% / 6 * 3);
   }
 
   83.33% {
-    margin-left: calc(-728px * 4);
+    margin-left: calc(-100% / 6 * 4);
   }
 
   100% {
-    margin-left: calc(-728px * 5);
+    margin-left: calc(-100% / 6 * 5);
   }
 }
