@@ -897,13 +897,11 @@ body.modal-open {
 /* ==========================================================================
 slides
 ========================================================================== */
-
 /* Styling the area of the slides */
 #slideshow {
   overflow: hidden;
-  height: 50vh; /* Use viewport height for dynamic sizing */
-  width: 100%; /* Use full width of the screen */
-  max-width: 728px; /* Set a maximum width */
+  height: 50vh; /* Changed from 100vh to 50vh */
+  width: 25vw; /* Changed from 50vw to 25vw */
   margin: 0 auto;
 }
 
@@ -911,9 +909,8 @@ slides
 with a fixed width and height */
 .slide {
   float: left;
-  height: 50vh; /* Use viewport height for dynamic sizing */
-  width: 100%; /* Use full width of the slideshow container */
-  max-width: 728px; /* Set a maximum width */
+  height: 50vh; /* Changed from 100vh to 50vh */
+  width: 25vw; /* Changed from 50vw to 25vw */
 }
 
 /* Add animation to the slides */
@@ -921,8 +918,7 @@ with a fixed width and height */
 
   /* Calculate the total width on the
   basis of number of slides */
-  width: calc(100% * 6);
-  max-width: calc(728px * 6); /* Set a maximum width */
+  width: calc(25vw * 6); /* Changed from 50vw to 25vw */
 
   /* Specify the animation with the
   duration and speed */
@@ -962,30 +958,30 @@ for the slideshow */
   /* Calculate the margin-left for 
   each of the slides */
   0% {
-    margin-left: 0%;
+    margin-left: 0;
   }
 
   16.67% {
-    margin-left: 0%;
+    margin-left: 0;
   }
 
   33.33% {
-    margin-left: calc(-100% / 6 * 1);
+    margin-left: calc(-25vw * 1); /* Changed from 50vw to 25vw */
   }
 
   50% {
-    margin-left: calc(-100% / 6 * 2);
+    margin-left: calc(-25vw * 2); /* Changed from 50vw to 25vw */
   }
 
   66.67% {
-    margin-left: calc(-100% / 6 * 3);
+    margin-left: calc(-25vw * 3); /* Changed from 50vw to 25vw */
   }
 
   83.33% {
-    margin-left: calc(-100% / 6 * 4);
+    margin-left: calc(-25vw * 4); /* Changed from 50vw to 25vw */
   }
 
   100% {
-    margin-left: calc(-100% / 6 * 5);
+    margin-left: calc(-25vw * 5); /* Changed from 50vw to 25vw */
   }
 }
