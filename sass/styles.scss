@@ -893,3 +893,92 @@ body.modal-open {
 .modal-body {
   padding:25px;
 }
+
+/* Styling the area of the slides */
+#slideshow {
+  overflow: hidden;
+  height: 510px;
+  width: 728px;
+  margin: 0 auto;
+}
+
+/* Style each of the sides 
+with a fixed width and height */
+.slide {
+  float: left;
+  height: 510px;
+  width: 728px;
+}
+
+/* Add animation to the slides */
+.slide-wrapper {
+
+  /* Calculate the total width on the
+  basis of number of slides */
+  width: calc(728px * 6);
+
+  /* Specify the animation with the
+  duration and speed */
+  animation: slide 20s ease infinite;
+}
+
+/* Set the background color
+of each of the slides */
+.slide:nth-child(1) {
+  background: rgb(255, 255, 255);
+}
+
+.slide:nth-child(2) {
+  background: rgb(255, 255, 255);
+}
+
+.slide:nth-child(3) {
+  background: rgb(255, 255, 255);
+}
+
+.slide:nth-child(4) {
+  background: rgb(255, 255, 255);
+}
+
+.slide:nth-child(5) {
+  background: rgb(255, 255, 255);
+}
+
+.slide:nth-child(6) {
+  background: rgb(255, 255, 255);
+}
+
+/* Define the animation 
+for the slideshow */
+@keyframes slide {
+
+  /* Calculate the margin-left for 
+  each of the slides */
+  0% {
+    margin-left: 0px;
+  }
+
+  16.67% {
+    margin-left: 0px;
+  }
+
+  33.33% {
+    margin-left: calc(-728px * 1);
+  }
+
+  50% {
+    margin-left: calc(-728px * 2);
+  }
+
+  66.67% {
+    margin-left: calc(-728px * 3);
+  }
+
+  83.33% {
+    margin-left: calc(-728px * 4);
+  }
+
+  100% {
+    margin-left: calc(-728px * 5);
+  }
+}
