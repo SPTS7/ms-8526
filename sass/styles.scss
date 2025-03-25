@@ -815,7 +815,7 @@ RSVP form
         left: 30px;
         transform: translateY(-50%);
       }
-      i.fa-user, i.fa-users, i.fa-envelope, .fa-key {
+      i.fa-user, i.fa-users, i.fa-envelope, .fa-key, .fa-music, .fa-cutlery {
         font-size: 14px;
         position: absolute;
         top: 50%;
@@ -900,8 +900,8 @@ slides
 /* Styling the area of the slides */
 #slideshow {
   overflow: hidden;
-  height: 50vh; /* Changed from 100vh to 50vh */
-  width: 25vw; /* Changed from 50vw to 25vw */
+  height: 100vh; /* Changed from 100vh to 50vh */
+  width: 50vw; /* Changed from 50vw to 25vw */
   margin: 0 auto;
 }
 
@@ -909,8 +909,8 @@ slides
 with a fixed width and height */
 .slide {
   float: left;
-  height: 50vh; /* Changed from 100vh to 50vh */
-  width: 25vw; /* Changed from 50vw to 25vw */
+  height: 100vh; /* Changed from 100vh to 50vh */
+  width: 50vw; /* Changed from 50vw to 25vw */
 }
 
 /* Add animation to the slides */
@@ -918,7 +918,7 @@ with a fixed width and height */
 
   /* Calculate the total width on the
   basis of number of slides */
-  width: calc(25vw * 6); /* Changed from 50vw to 25vw */
+  width: calc(50vw * 6); /* Changed from 50vw to 25vw */
 
   /* Specify the animation with the
   duration and speed */
@@ -966,22 +966,22 @@ for the slideshow */
   }
 
   33.33% {
-    margin-left: calc(-25vw * 1); /* Changed from 50vw to 25vw */
+    margin-left: calc(-50vw * 1); /* Changed from 50vw to 25vw */
   }
 
   50% {
-    margin-left: calc(-25vw * 2); /* Changed from 50vw to 25vw */
+    margin-left: calc(-50vw * 2); /* Changed from 50vw to 25vw */
   }
 
   66.67% {
-    margin-left: calc(-25vw * 3); /* Changed from 50vw to 25vw */
+    margin-left: calc(-50vw * 3); /* Changed from 50vw to 25vw */
   }
 
   83.33% {
-    margin-left: calc(-25vw * 4); /* Changed from 50vw to 25vw */
+    margin-left: calc(-50vw * 4); /* Changed from 50vw to 25vw */
   }
 
   100% {
-    margin-left: calc(-25vw * 5); /* Changed from 50vw to 25vw */
+    margin-left: calc(-50vw * 5); /* Changed from 50vw to 25vw */
   }
 }

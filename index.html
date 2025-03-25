@@ -237,12 +237,24 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
-                                <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0" max="4" placeholder="Acompanhantes/Crianças" required>
+                                <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0" max="10" placeholder="Acompanhantes/Crianças" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
                                 <i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code" class="" min="0" placeholder="Código de convite" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-music"></i><input name="music_suggestion" class="" placeholder="Deixa a tua sugestão de música para o DJ">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-cutlery"></i><input name="allergies" class="" placeholder="Alergias alimentares?">
                             </div>
                         </div>
                     </div>
@@ -276,25 +288,25 @@
                 <div id="slideshow" class="slideshow">
                     <div class="slide-wrapper">
                         <div class="slide">
-                            <img src="img/00.jpeg" alt="Foto 0">
+                            <img src="img/00.jpeg" alt="Foto 0" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                         <div class="slide">
-                            <img src="img/11.jpg" alt="Foto 1">
+                            <img src="img/11.jpg" alt="Foto 1" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                         <div class="slide">
-                            <img src="img/22.jpeg" alt="Foto 2">
+                            <img src="img/22.jpeg" alt="Foto 2" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                         <div class="slide">
-                            <img src="img/33.jpeg" alt="Foto 3">
+                            <img src="img/33.jpeg" alt="Foto 3" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                         <div class="slide">
-                            <img src="img/44.jpeg" alt="Foto 4">
+                            <img src="img/44.jpeg" alt="Foto 4" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                         <div class="slide">
-                            <img src="img/55.jpeg" alt="Foto 5">
+                            <img src="img/55.jpeg" alt="Foto 5" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                         <div class="slide">
-                            <img src="img/66.jpg" alt="Foto 6">
+                            <img src="img/66.jpg" alt="Foto 6" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                     </div>
                 </div>
@@ -325,20 +337,5 @@
 <script src="js/jquery.mb.YTPlayer.min.js"></script>
 <script src="js/vendor/ouical.js"></script>
 <script src="js/scripts.min.js"></script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-46465113-4', 'auto');
-    ga('send', 'pageview');
-</script>
 </body>
 </html>
