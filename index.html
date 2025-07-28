@@ -12,47 +12,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Nós Matilde e Simão, vamos casar!</title>
     <meta name="description" content="Temos o prazer de vos convidar para o nosso casamento.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
     <meta property="og:title" content="Nós, Matilde e Simão, vamos casar!">
     <meta property="og:description" content="Temos o prazer de vos convidar para o nosso casamento.">
     <meta property="og:image" content="img/hero-min.jpeg">
     <meta property="og:type" content="website">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <!-- Remove favicon references that don't exist -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="manifest.json"> -->
+    <!-- <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5"> -->
 
     <!-- Preconnect to CDNs for better performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://ajax.googleapis.com">
 
     <script>
-        // load css files from CDN if local node_modules fail
-        function loadCssFromCDN(css) {
-            const link = document.createElement('link');
-            if (css === 'animate.css') {
-                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css';
-            } else if (css === 'font-awesome.css') {
-                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
-            }
-            link.rel = 'stylesheet';
-            document.getElementsByTagName('head')[0].appendChild(link);
-        }
-
-        // load js files from CDN if local node_modules fail
-        function loadJsFromCDN(js) {
-            if (js === 'waypoints.js') {
-                const script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js';
-                document.head.appendChild(script);
-            } else if (js === 'jquery.js') {
-                const script = document.createElement('script');
-                script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js';
-                document.head.appendChild(script);
-            }
-        }
+        // Simplified CDN loading - no longer needed since we're using CDN directly
     </script>
 
     <link rel="stylesheet" href="css/normalize.min.css">
@@ -61,8 +42,8 @@
     <link rel="stylesheet" href="css/flexslider.css">
     <link rel="stylesheet" href="css/styles.min.css">
     <link rel="stylesheet" href="css/queries.css">
-    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" onerror="loadCssFromCDN('animate.css')">
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">>
     
     <!-- Custom CSS for slideshow -->
     <style>
@@ -185,12 +166,56 @@
             will-change: transform;
         }
 
-        /* Smooth scrolling */
+        /* Smooth scrolling and disable pull-to-refresh */
         html {
             scroll-behavior: smooth;
+            overscroll-behavior: none; /* Disable pull-to-refresh and overscroll effects */
+            overscroll-behavior-y: none; /* Specifically disable vertical overscroll */
         }
 
-        /* Countdown styling improvements */
+        body {
+            overscroll-behavior: none; /* Additional support for different browsers */
+            overscroll-behavior-y: none;
+        }
+
+        /* Disable rubber band scrolling and blue progress bar */
+        * {
+            overscroll-behavior: none;
+        }
+
+        /* Reduce spacing between RSVP and photos sections */
+        #rsvp {
+            padding-bottom: 30px !important; /* Reduced from default section padding */
+        }
+
+        #eng-pics {
+            padding-top: 30px !important; /* Reduced from default section padding */
+        }
+
+        /* Image fallback styling */
+        img {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+        
+        .image-placeholder {
+            background-color: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-style: italic;
+            min-height: 200px;
+        }
+
+        /* Ensure slideshow has consistent height even with missing images */
+        .slide {
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         #countdown {
             background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
@@ -288,7 +313,7 @@
                     <p><strong>Cerimónia</strong></p>
                     <h5>Igreja Matriz de Espinho <span class="time">13:45 Horas</span></h5>
                     <p>A cerimónia religiosa será na Igreja Matriz de Espinho.</p>
-                    <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/KdJvC325ZXkZRypK6" target="_blank" rel="noopener">
+                    <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/KdJvC325ZXkZRypK6" target="_blank" rel="noopener noreferrer">
                         <i class="fa fa-map"></i>&nbsp;&nbsp;Abrir Mapa
                     </a>
                 </div>
@@ -298,7 +323,7 @@
                     <p><strong>Copo de Água</strong></p>
                     <h5>Quinta Cardeal <span class="time">16:00 Horas</span></h5>
                     <p>A festa continuará em Vila do Conde, na Quinta Cardeal, um espaço acolhedor que combina um estilo rústico e requintado.</p>
-                    <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/eatuxK1RSaNN7fAz9" target="_blank" rel="noopener">
+                    <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/eatuxK1RSaNN7fAz9" target="_blank" rel="noopener noreferrer">
                         <i class="fa fa-map"></i>&nbsp;&nbsp;Abrir Mapa
                     </a>
                 </div>
@@ -327,7 +352,7 @@
 <section class="rsvp text-center" id="rsvp">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-10 col-xs-12 mx-auto"></div>
+            <div class="col-md-8 col-sm-10 col-xs-12 mx-auto">
                 <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -339,9 +364,9 @@
                                     <div id="add-to-cal"></div>
                                 </div>
                             </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
+                        </div>
+                    </div>
+                </div>
                 <h3>Por favor confirmar até 31-01-2026</h3>
                 <form id="rsvp-form" class="rsvp-form" action="" method="POST">
                     <div class="row">
@@ -383,7 +408,7 @@
                     <div class="row">
                         <div class="col-md-12" id="alert-wrapper"></div>
                     </div>
-                    <button class="btn-fill rsvp-btn">Confirmo a presença!</button>
+                    <button class="btn-fill rsvp-btn" type="submit">Confirmo a presença!</button>
                 </form>
             </div>
         </div>
@@ -403,25 +428,25 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="slideshow-container">
                     <div class="slide active">
-                        <img src="img/00.jpeg" alt="Foto 0" loading="lazy">
+                        <img src="img/00.jpeg" alt="Foto 0">
                     </div>
                     <div class="slide">
-                        <img src="img/11.jpg" alt="Foto 1" loading="lazy">
+                        <img src="img/11.jpg" alt="Foto 1">
                     </div>
                     <div class="slide">
-                        <img src="img/22.jpeg" alt="Foto 2" loading="lazy">
+                        <img src="img/22.jpeg" alt="Foto 2">
                     </div>
                     <div class="slide">
-                        <img src="img/33.jpeg" alt="Foto 3" loading="lazy">
+                        <img src="img/33.jpeg" alt="Foto 3">
                     </div>
                     <div class="slide">
-                        <img src="img/44.jpeg" alt="Foto 4" loading="lazy">
+                        <img src="img/44.jpeg" alt="Foto 4">
                     </div>
                     <div class="slide">
-                        <img src="img/55.jpeg" alt="Foto 5" loading="lazy">
+                        <img src="img/55.jpeg" alt="Foto 5">
                     </div>
                     <div class="slide">
-                        <img src="img/66.jpg" alt="Foto 6" loading="lazy">
+                        <img src="img/66.jpg" alt="Foto 6">
                     </div>
                     
                     <button class="prev" onclick="changeSlide(-1)">❮</button>
@@ -458,14 +483,43 @@
 </footer>
 
 <!-- Scripts loaded at the end for better performance -->
-<script src="js/vendor/jquery-1.11.2.min.js" onerror="loadJsFromCDN('jquery.js')"></script>
-<script src="node_modules/waypoints/lib/jquery.waypoints.min.js" onerror="loadJsFromCDN('waypoints.js')"></script>
-<script src="js/jquery.fancybox.pack.js"></script>
-<script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/jquery.flexslider-min.js"></script>
-<script src="js/jquery.mb.YTPlayer.min.js"></script>
-<script src="js/vendor/ouical.js"></script>
-<script src="js/scripts.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+
+<!-- Optional local scripts with error handling -->
+<script>
+    // Load local scripts with fallbacks
+    const localScripts = [
+        'js/jquery.fancybox.pack.js',
+        'js/vendor/bootstrap.min.js',
+        'js/jquery.flexslider-min.js',
+        'js/jquery.mb.YTPlayer.min.js',
+        'js/vendor/ouical.js'
+    ];
+
+    localScripts.forEach(src => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onerror = function() {
+            console.warn(`Optional script failed to load: ${src}`);
+        };
+        document.head.appendChild(script);
+    });
+
+    // Load scripts.min.js only if waypoints is available
+    setTimeout(() => {
+        if (typeof jQuery !== 'undefined' && jQuery.fn && jQuery.fn.waypoint) {
+            const script = document.createElement('script');
+            script.src = 'js/scripts.min.js';
+            script.onerror = function() {
+                console.warn('scripts.min.js failed to load - continuing without waypoints animations');
+            };
+            document.head.appendChild(script);
+        } else {
+            console.warn('Waypoints not available - skipping scripts.min.js to prevent errors');
+        }
+    }, 100);
+</script>
 
 <script>
     // Optimized countdown with better performance
@@ -551,6 +605,7 @@
             startAutoSlide();
         });
     }
+
     // Touch/swipe support for mobile
     function addTouchSupport() {
         const slideshowContainer = document.querySelector('.slideshow-container');
@@ -591,23 +646,24 @@
         });
     }
 
-    // Lazy loading optimization
-    function optimizeImages() {
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.src; // This triggers the actual loading
-                        observer.unobserve(img);
-                    }
-                });
+    // Image error handling
+    function handleImageError() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('error', function() {
+                console.warn('Image failed to load:', this.src);
+                this.style.display = 'none';
+                
+                // Create placeholder
+                const placeholder = document.createElement('div');
+                placeholder.className = 'image-placeholder';
+                placeholder.textContent = 'Imagem não encontrada';
+                placeholder.style.width = this.style.width || '100%';
+                placeholder.style.height = this.style.height || '200px';
+                
+                this.parentNode.insertBefore(placeholder, this);
             });
-
-            images.forEach(img => imageObserver.observe(img));
-        }
+        });
     }
 
     // Initialize everything when DOM is ready
@@ -618,7 +674,7 @@
         pauseSlideshow();
         addTouchSupport();
         addKeyboardSupport();
-        optimizeImages();
+        handleImageError(); // Add image error handling
     });
 
     // Performance optimization: Debounce resize events
@@ -633,12 +689,11 @@
             timeout = setTimeout(later, wait);
         };
     }
-// Any resize-specific logic can go here
+
     // Handle window resize
     window.addEventListener('resize', debounce(() => {
         // Any resize-specific logic can go here
     }, 250));
 </script>
 </body>
-
 </html>
