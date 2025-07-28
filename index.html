@@ -551,7 +551,6 @@
             startAutoSlide();
         });
     }
-
     // Touch/swipe support for mobile
     function addTouchSupport() {
         const slideshowContainer = document.querySelector('.slideshow-container');
@@ -634,11 +633,12 @@
             timeout = setTimeout(later, wait);
         };
     }
-
+// Any resize-specific logic can go here
     // Handle window resize
     window.addEventListener('resize', debounce(() => {
         // Any resize-specific logic can go here
     }, 250));
 </script>
 </body>
+
 </html>
