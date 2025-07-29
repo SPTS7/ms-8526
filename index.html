@@ -116,6 +116,20 @@
             padding: 12px 24px !important;
             font-size: 1.1em !important;
         }
+        /* --- Mobile Specific Styles (for screens <= 768px) --- */
+        @media (max-width: 768px) {
+            .hero {
+                /* On mobile, remove the vh unit and let content define the height */
+                min-height: auto !important;
+                /* Use padding to ensure there is enough space */
+                padding: 90px 15px !important;
+            }
+
+            .hero-logo {
+                /* Reduce the bottom margin on mobile for a tighter look */
+                margin-bottom: 40px !important;
+            }
+        }
 
         /* Slideshow Styles */
         .slideshow-container { position: relative; max-width: 900px; margin: auto; background: #000; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
@@ -194,7 +208,7 @@
                         <h3>Cerimónia</h3>
                         <h5>Igreja Matriz de Espinho <span class="time">13:45 Horas</span></h5>
                         <p>A cerimónia religiosa será na Igreja Matriz de Espinho.</p>
-                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/P2G5qW5s1xZ1y9HdA" target="_blank" rel="noopener">
+                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/KdJvC325ZXkZRypK6" target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
                         </a>
                     </div>
@@ -204,8 +218,30 @@
                         <h3>Copo de Água</h3>
                         <h5>Quinta Cardeal <span class="time">16:00 Horas</span></h5>
                         <p>A festa continuará em Vila do Conde, na Quinta Cardeal, um espaço acolhedor que combina um estilo rústico e requintado.</p>
-                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/uX7R4bKz9Y3jF8tK7" target="_blank" rel="noopener">
+                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/eatuxK1RSaNN7fAz9" target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
+                    <div class="wp3">
+                        <h3>Onde Ficar</h3>
+                        <h5>Alojamento disponivel nas proximidades</h5>
+                        <p>Neste Link podem ver hoteis na zona</p>
+                        <a class="btn btn-fill btn-small" href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&label=gog235jc-1DCAsouwFCFWNhc2EtZGEtY2VyY2EtZm9ybmVsb0gfWANouwGIAQKYAR-4AQnIARHYAQPoAQH4AQKIAgGoAgO4Ao7akb8GwAIB0gIkYWI1ZWVlZTItNGFkMi00OWI1LWE3MmItYTc3YTY0ZjAwODk52AIE4AIB&sid=8f54bcaae76864175dfd89d75a460542&aid=356980&lang=pt-pt&sb=1&src_elem=sb&src=city&dest_id=-2179489&dest_type=city&checkin=2026-05-08&checkout=2026-05-09&sb_lp=1" target="_blank" rel="noopener">
+                            <i class="fa fa-map"></i> Booking
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
+                    <div class="wp4">
+                        <h3>Onde Ficar</h3>
+                        <h5>Alojamento disponivel nas proximidades</h5>
+                        <p>Neste Link podem ver hoteis na zona</p>
+                        <a class="btn btn-fill btn-small" href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&label=gog235jc-1DCAsouwFCFWNhc2EtZGEtY2VyY2EtZm9ybmVsb0gfWANouwGIAQKYAR-4AQnIARHYAQPoAQH4AQKIAgGoAgO4Ao7akb8GwAIB0gIkYWI1ZWVlZTItNGFkMi00OWI1LWE3MmItYTc3YTY0ZjAwODk52AIE4AIB&sid=8f54bcaae76864175dfd89d75a460542&aid=356980&lang=pt-pt&sb=1&src_elem=sb&src=city&dest_id=-2179489&dest_type=city&checkin=2026-05-08&checkout=2026-05-09&sb_lp=1" target="_blank" rel="noopener">
+                            <i class="fa fa-map"></i> Booking
                         </a>
                     </div>
                 </div>
