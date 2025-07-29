@@ -127,8 +127,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--primary-blue);
-            opacity: 0.6;
+            background-color: var(--primary-gold);
+            opacity: 0.4;
             z-index: 1;
         }
 
@@ -137,6 +137,12 @@
             position: relative;
             z-index: 2;
         }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column; /* Stacks items vertically */
+            align-items: center;   /* Centers items horizontally */
+        }
         
         /* Remove the problematic margin and background from the logo */
         .hero-logo {
@@ -144,6 +150,7 @@
             width: 100% !important;
             height: auto !important;
             margin-bottom: 40px !important; /* Proper spacing */
+            margin-top: 350px !important; /* Proper spacing */
             background: none !important; /* Remove black overlay */
         }
         
@@ -298,9 +305,6 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="hero-content text-center">
                         <img src="img/logo-lg.svg" alt="Matilde e Simão 08-05-2026" class="hero-logo">
-                        <a href="#rsvp" class="btn btn-primary btn-blue btn-small hero-button">
-                            Confirmar Presença
-                        </a>
                     </div>
                 </div>
             </div>
@@ -364,10 +368,9 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                      <div class="wp3">
                         <h3>Onde Ficar</h3>
-                        <h5>Alojamento nas proximidades</h5>
-                        <p>Para vossa comodidade, podem encontrar hotéis na zona através deste link.</p>
+                        <p>Queremos que aproveitem cada momento da festa sem preocupações! Para descansarem perto da quinta, explorem as opções de hotéis na zona. </p>
                         <a class="btn btn-fill btn-small" href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&label=gog235jc-1DCAsouwFCFWNhc2EtZGEtY2VyY2EtZm9ybmVsb0gfWANouwGIAQKYAR-4AQnIARHYAQPoAQH4AQKIAgGoAgO4Ao7akb8GwAIB0gIkYWI1ZWVlZTItNGFkMi00OWI1LWE3MmItYTc3YTY0ZjAwODk52AIE4AIB&sid=8f54bcaae76864175dfd89d75a460542&aid=356980&lang=pt-pt&sb=1&src_elem=sb&src=city&dest_id=-2179489&dest_type=city&checkin=2026-05-08&checkout=2026-05-09&sb_lp=1" target="_blank" rel="noopener">
-                            <i class="fa fa-bed"></i> Booking.com
+                            <i class="fa fa-bed"></i> Booking
                         </a>
                     </div>
                 </div>
@@ -413,10 +416,10 @@
                 <form id="rsvp-form" class="rsvp-form" action="" method="POST">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-user"></i><input name="name" placeholder="O vosso nome" required></div>
+                            <div class="form-input-group"><i class="fa fa-user"></i><input name="name" placeholder="Nome" required></div>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-envelope"></i><input type="email" name="email" placeholder="O vosso email" required></div>
+                            <div class="form-input-group"><i class="fa fa-envelope"></i><input type="email" name="email" placeholder="Email" required></div>
                         </div>
                     </div>
                     <div class="row">
