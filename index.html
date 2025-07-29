@@ -6,7 +6,7 @@
     <title>Nós Matilde e Simão, vamos casar!</title>
     <meta name="description" content="Temos o prazer de vos convidar para o nosso casamento.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#1b4a91">
 
     <meta property="og:title" content="Nós, Matilde e Simão, vamos casar!">
     <meta property="og:description" content="Temos o prazer de vos convidar para o nosso casamento.">
@@ -18,6 +18,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="manifest.json">
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -70,83 +74,217 @@
         .countdown-container {
             font-size: 1.2em;
         }
-        #countdown {
-            font-size: 1.5em;
-            font-weight: bold;
-            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        /* FINAL HERO STYLES - Add to your <style> block */
+    </style>
 
-        /* Set a minimum height and padding on the hero section */
+    <style>
+        /* Define color variables */
+        :root {
+            --primary-blue: #1b4a91;
+            --primary-gold: #beae92;
+            --text-dark: #333333;
+            --background-light: #fdfdfa;
+        }
+
+        /* --- General Typography & Body Styles --- */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+        
+        p {
+            line-height: 1.8;
+        }
+
+        /* --- Hero Section Overhaul --- */
         .hero {
-            min-height: 75vh;
+            position: relative; /* Needed for the overlay */
+            min-height: 85vh;
             padding: 40px 0;
-            display: flex;       /* Use flex to help with vertical alignment */
-            align-items: center; /* Vertically center the content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Add your background image here */
+            background-image: url('img/hero-min.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        /* Style the content container with !important to override other files */
-        .hero .hero-content {
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            width: 100% !important; /* This forces it to take the full width */
+        /* Add a dark blue overlay to make text readable */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--primary-blue);
+            opacity: 0.6;
+            z-index: 1;
         }
 
-        /* Style the logo with !important */
+        /* Ensure hero content is above the overlay */
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Remove the problematic margin and background from the logo */
         .hero-logo {
-            max-width: 1000px !important;
+            max-width: 600px !important;
             width: 100% !important;
             height: auto !important;
-            margin-bottom: 1200px !important;
-            background: rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px !important; /* Proper spacing */
+            background: none !important; /* Remove black overlay */
+        }
+        
+        /* Consistent Button Styling */
+        .btn {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            padding: 12px 28px;
         }
 
-
-        /* Style the button with !important */
-        .hero-button {
-            background-color: #1b4a91 !important;
-            color: #beae92 !important;
-            border-color: #beae92 !important;
-            padding: 12px 24px !important;
-            font-size: 1.1em !important;
-        }
-        /* --- Mobile Specific Styles (for screens <= 768px) --- */
-        @media (max-width: 768px) {
-            .hero {
-                /* On mobile, remove the vh unit and let content define the height */
-                min-height: auto !important;
-                /* Use padding to ensure there is enough space */
-                padding: 90px 15px !important;
-            }
-
-            .hero-logo {
-                /* Reduce the bottom margin on mobile for a tighter look */
-                margin-bottom: 40px !important;
-            }
+        .btn-fill, .hero-button, .rsvp-btn {
+            background-color: var(--primary-blue) !important;
+            color: var(--primary-gold) !important;
+            border: 2px solid var(--primary-gold) !important;
         }
 
-        /* Slideshow Styles */
-        .slideshow-container { position: relative; max-width: 900px; margin: auto; background: #000; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .slide { display: none; width: 100%; height: 400px; }
+        .btn-fill:hover, .hero-button:hover, .rsvp-btn:hover {
+            background-color: var(--primary-gold) !important;
+            color: var(--primary-blue) !important;
+            border-color: var(--primary-blue) !important;
+        }
+        
+        /* --- Events (Informações) Section --- */
+        /* Use Flexbox on the row to make columns equal height */
+        .events .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .events .leftcol, .events .rightcol {
+            padding: 20px;
+        }
+        .events h3 {
+            margin-top: 0;
+        }
+        .events .wp3, .events .wp4 {
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .events .wp3 .btn, 
+        .events .wp4 .btn {
+            margin-top: auto;
+        }
+
+        /* --- Countdown Section --- */
+        #countdown {
+            font-size: 2.5em; /* Larger font size */
+            font-weight: bold;
+            color: var(--primary-blue);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary-gold);
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+        }
+        #time {
+            background-color: #f4f2ed; /* Light gold background */
+        }
+
+        /* --- RSVP Section --- */
+        .rsvp {
+            background-color: var(--primary-gold);
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        .rsvp h2, .rsvp h3 {
+            color: var(--primary-blue);
+        }
+        .form-input-group input {
+            background-color: #fff !important;
+            border-color: var(--primary-blue) !important;
+            color: var(--text-dark) !important;
+        }
+        .form-input-group input::placeholder {
+            color: #999;
+        }
+        .form-input-group i {
+            color: var(--primary-blue);
+        }
+
+        /* --- Slideshow Section --- */
+        .slideshow-container { 
+            position: relative; 
+            max-width: 900px; 
+            margin: auto; 
+            background: var(--primary-blue); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .slide { display: none; width: 100%; height: 450px; }
         .slide.active { display: block; }
         .slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
         .slide:hover img { transform: scale(1.05); }
-        .slideshow-nav { cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); width: auto; padding: 16px; color: white; font-weight: bold; font-size: 18px; background: rgba(0,0,0,0.5); border: none; user-select: none; transition: background-color 0.3s ease; z-index: 10; }
-        .slideshow-nav:hover { background: rgba(0,0,0,0.8); }
+        .slideshow-nav { 
+            cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); 
+            padding: 16px; color: var(--primary-blue); background: var(--primary-gold); 
+            font-weight: bold; font-size: 18px; border: none; user-select: none; 
+            transition: background-color 0.3s ease; z-index: 10; 
+        }
+        .slideshow-nav:hover { background: #fff; }
         .slideshow-prev { left: 0; border-radius: 0 3px 3px 0; }
         .slideshow-next { right: 0; border-radius: 3px 0 0 3px; }
         .dots-container { text-align: center; margin-top: 20px; }
-        .dot { cursor: pointer; height: 15px; width: 15px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; transition: background-color 0.3s ease, transform 0.3s ease; }
-        .dot.active, .dot:hover { background-color: #717171; transform: scale(1.2); }
+        .dot { 
+            cursor: pointer; height: 15px; width: 15px; margin: 0 5px; 
+            background-color: #ccc; border: 2px solid var(--primary-gold);
+            border-radius: 50%; display: inline-block; transition: all 0.3s ease;
+        }
+        .dot.active, .dot:hover { 
+            background-color: var(--primary-gold); transform: scale(1.2); 
+        }
         @media (max-width: 768px) {
             .slide { height: 250px; }
             .slideshow-nav { padding: 12px; font-size: 16px; }
+        }
+        
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--primary-gold);
+            padding: 20px 0;
+        }
+        .to-top {
+            color: var(--primary-gold);
+            border: 1px solid var(--primary-gold);
+        }
+        .to-top:hover {
+            color: var(--primary-blue);
+            background-color: var(--primary-gold);
         }
     </style>
 
@@ -154,16 +292,16 @@
 </head>
 
 <body id="top">
-    <section class="hero" style="position: relative;">
+    <section class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="hero-content text-center">
-                    <img src="img/logo-lg.svg" alt="Matilde e Simão 08-05-2026" class="hero-logo">
-                    <a href="#rsvp" class="btn btn-primary btn-blue btn-small hero-button">
-                        Confirmar Presença
-                    </a>
-                </div>
+                        <img src="img/logo-lg.svg" alt="Matilde e Simão 08-05-2026" class="hero-logo">
+                        <a href="#rsvp" class="btn btn-primary btn-blue btn-small hero-button">
+                            Confirmar Presença
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -203,7 +341,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="wp3">
                         <h3>Cerimónia</h3>
                         <h5>Igreja Matriz de Espinho <span class="time">13:45 Horas</span></h5>
@@ -213,35 +351,23 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="wp4">
                         <h3>Copo de Água</h3>
                         <h5>Quinta Cardeal <span class="time">16:00 Horas</span></h5>
-                        <p>A festa continuará em Vila do Conde, na Quinta Cardeal, um espaço acolhedor que combina um estilo rústico e requintado.</p>
+                        <p>A festa continuará em Vila do Conde, na Quinta Cardeal, um espaço acolhedor.</p>
                         <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/eatuxK1RSaNN7fAz9" target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
-                    <div class="wp3">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                     <div class="wp3">
                         <h3>Onde Ficar</h3>
-                        <h5>Alojamento disponivel nas proximidades</h5>
-                        <p>Neste Link podem ver hoteis na zona</p>
+                        <h5>Alojamento nas proximidades</h5>
+                        <p>Para vossa comodidade, podem encontrar hotéis na zona através deste link.</p>
                         <a class="btn btn-fill btn-small" href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&label=gog235jc-1DCAsouwFCFWNhc2EtZGEtY2VyY2EtZm9ybmVsb0gfWANouwGIAQKYAR-4AQnIARHYAQPoAQH4AQKIAgGoAgO4Ao7akb8GwAIB0gIkYWI1ZWVlZTItNGFkMi00OWI1LWE3MmItYTc3YTY0ZjAwODk52AIE4AIB&sid=8f54bcaae76864175dfd89d75a460542&aid=356980&lang=pt-pt&sb=1&src_elem=sb&src=city&dest_id=-2179489&dest_type=city&checkin=2026-05-08&checkout=2026-05-09&sb_lp=1" target="_blank" rel="noopener">
-                            <i class="fa fa-map"></i> Booking
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
-                    <div class="wp4">
-                        <h3>Onde Ficar</h3>
-                        <h5>Alojamento disponivel nas proximidades</h5>
-                        <p>Neste Link podem ver hoteis na zona</p>
-                        <a class="btn btn-fill btn-small" href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&label=gog235jc-1DCAsouwFCFWNhc2EtZGEtY2VyY2EtZm9ybmVsb0gfWANouwGIAQKYAR-4AQnIARHYAQPoAQH4AQKIAgGoAgO4Ao7akb8GwAIB0gIkYWI1ZWVlZTItNGFkMi00OWI1LWE3MmItYTc3YTY0ZjAwODk52AIE4AIB&sid=8f54bcaae76864175dfd89d75a460542&aid=356980&lang=pt-pt&sb=1&src_elem=sb&src=city&dest_id=-2179489&dest_type=city&checkin=2026-05-08&checkout=2026-05-09&sb_lp=1" target="_blank" rel="noopener">
-                            <i class="fa fa-map"></i> Booking
+                            <i class="fa fa-bed"></i> Booking.com
                         </a>
                     </div>
                 </div>
@@ -255,11 +381,11 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="countdown-images-container">
                         <img src="img/1.svg" class="img-responsive wp1 countdown-image" alt="Ilustração noiva e noivo 1">
-                        <img src="img/2.svg" class="img-responsive wp2 countdown-image" alt="Ilustração noiva e noivo 2">
+                        <img src="img/2.svg" class="img-responsive wp1 countdown-image" alt="Ilustração noiva e noivo 2">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 countdown-container">
-                    <h2>Em contagem decrescente para o grande dia!</h2>
+                    <h2>Contagem decrescente para o grande dia!</h2>
                     <div id="countdown"></div>
                 </div>
             </div>
@@ -287,26 +413,32 @@
                 <form id="rsvp-form" class="rsvp-form" action="" method="POST">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-envelope"></i><input type="email" name="email" placeholder="O teu email" required></div>
+                            <div class="form-input-group"><i class="fa fa-user"></i><input name="name" placeholder="O vosso nome" required></div>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-user"></i><input name="name" placeholder="Nome" required></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-users"></i><input type="number" name="extras" min="0" max="10" placeholder="Acompanhantes/Crianças" required></div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code" min="0" placeholder="Código de convite" required></div>
+                            <div class="form-input-group"><i class="fa fa-envelope"></i><input type="email" name="email" placeholder="O vosso email" required></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-music"></i><input name="music_suggestion" placeholder="Deixa a tua sugestão de música para o DJ"></div>
+                            <div class="form-input-group"><i class="fa fa-users"></i><input type="number" name="adults" min="1" max="10" placeholder="Nº de Adultos" required></div>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-cutlery"></i><input name="allergies" placeholder="Alergias alimentares?"></div>
+                             <div class="form-input-group"><i class="fa fa-users"></i><input type="number" name="children_under_3" min="0" max="10" placeholder="Nº de Crianças (até 3 anos)"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            
+                            <div class="form-input-group"><i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code" min="0" placeholder="Código do convite"></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group"><i class="fa fa-cutlery"></i><input name="allergies" placeholder="Restrições alimentar?"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-input-group"><i class="fa fa-music"></i><input name="music_suggestion" placeholder="Deixem a vossa sugestão para o DJ"></div>
                         </div>
                     </div>
                     <div class="row"><div class="col-md-12" id="alert-wrapper"></div></div>
@@ -318,7 +450,7 @@
 </section>
 
     <section id="eng-pics" class="section-padding">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2>Fotografias</h2>
@@ -327,7 +459,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <div class="slideshow-container">
                         <div class="slide"><img src="img/00.jpeg" alt="Foto da nossa história 0" loading="lazy"></div>
                         <div class="slide"><img src="img/11.jpg" alt="Foto da nossa história 1" loading="lazy"></div>
@@ -337,8 +469,8 @@
                         <div class="slide"><img src="img/55.jpeg" alt="Foto da nossa história 5" loading="lazy"></div>
                         <div class="slide"><img src="img/66.jpg" alt="Foto da nossa história 6" loading="lazy"></div>
                         
-                        <button class="slideshow-nav slideshow-prev" aria-label="Anterior">&#10094;</button>
-                        <button class="slideshow-nav slideshow-next" aria-label="Seguinte">&#10095;</button>
+                        <button class="slideshow-nav slideshow-prev" aria-label="Anterior">❮</button>
+                        <button class="slideshow-nav slideshow-next" aria-label="Seguinte">❯</button>
                     </div>
                     
                     <div class="dots-container">
@@ -438,15 +570,19 @@
             }
 
             // Event Listeners
-            prevButton.addEventListener('click', () => {
-                showSlide(currentSlideIndex - 1);
-                startAutoSlide(); // Reset timer on manual navigation
-            });
-
-            nextButton.addEventListener('click', () => {
-                showSlide(currentSlideIndex + 1);
-                startAutoSlide();
-            });
+            if(prevButton) {
+                prevButton.addEventListener('click', () => {
+                    showSlide(currentSlideIndex - 1);
+                    startAutoSlide(); // Reset timer on manual navigation
+                });
+            }
+            
+            if(nextButton) {
+                nextButton.addEventListener('click', () => {
+                    showSlide(currentSlideIndex + 1);
+                    startAutoSlide();
+                });
+            }
 
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
@@ -459,8 +595,10 @@
             slideshowContainer.addEventListener('mouseleave', startAutoSlide);
 
             // Initialise
-            showSlide(0);
-            startAutoSlide();
+            if(slides.length > 0) {
+                showSlide(0);
+                startAutoSlide();
+            }
         }
     });
     </script>
