@@ -288,16 +288,30 @@
         /* --- Footer --- */
         footer {
             background-color: var(--primary-blue);
-            color: var(--primary-gold);
-            padding: 20px 0;
         }
         .to-top {
+            /* Simplified style for just the arrow */
             color: var(--primary-gold);
-            border: 1px solid var(--primary-gold);
+            font-size: 28px; /* Made the arrow icon larger */
+            text-decoration: none;
+            
+            /* Animation and Focus */
+            transition: transform 0.2s ease, color 0.2s ease;
+            outline: none !important;
         }
         .to-top:hover {
-            color: var(--primary-blue);
-            background-color: var(--primary-gold);
+            /* Change color and add a subtle grow effect on hover */
+            color: var(--background-light); /* Lighter color on hover */
+            transform: scale(1.2);
+        }
+        .to-top:focus, .to-top:active, .to-top:visited, .to-top:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        footer .content {
+            display: flex;
+            justify-content: center; /* Horizontally centers the arrow */
+            align-items: center;   /* Vertically centers the arrow */
         }
     </style>
 
@@ -410,7 +424,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>×</span></button>
                                 <div class="section-padding">
                                     <h3>Obrigado!</h3>
                                     <p>Estamos muito contentes por te juntares a nós neste momento!</p>

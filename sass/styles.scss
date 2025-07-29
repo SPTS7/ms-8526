@@ -850,39 +850,33 @@ RSVP form
 /* ==========================================================================
 Footer
 ========================================================================== */
+/* ==========================================================================
+Footer
+========================================================================== */
 footer {
   .content {
-    border-top: 1px solid $keyline-color;
-    padding-bottom: 20px;
+    // Use Flexbox to center the button vertically and horizontally
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // Define the footer's content area
+    padding: 20px 0;
   }
-  .to-top-wrapper {
-    font-size: 30px;
-    display: block;
-    cursor: pointer;
-    margin: -25px auto 50px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    border: 1px solid $keyline-color;
-    background: #fff;
+
+
+  // Style the actual arrow link
+  .to-top-wrapper .to-topp {
+    font-size: 28px;
+    color: $accent-color; // Using the SCSS variable from your file
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      color: $accent-color-hover; // Using the SCSS variable from your file
+      transform: scale(1.2);
+    }
   }
-  .to-top-wrapper .to-top {
-    display: block;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-  }
-  .to-top-wrapper .to-top:hover {
-    margin-top: -5px;
-  }
-  span.fa-heart {
-    color: #ff415c;
-    font-size: 18px;
-    margin: 0 2px;
-  }
-}
+
 
 /* ==========================================================================
 Bootstrap override
