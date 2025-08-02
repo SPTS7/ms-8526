@@ -587,26 +587,17 @@
                                         <p>Estamos muito contentes por te juntares a nós neste momento!</p>
                                         <div id="add-to-cal">
                                             <h4>Adicionar ao Calendário:</h4>
-
-                                            <a class="cal-btn" id="ical-link" download="casamento_matilde_simao.ics">
-                                                <i class="fa fa-calendar-plus-o"></i> Apple / Outros
+                                            <a class="cal-btn" id="universal-cal-link"
+                                                download="casamento_matilde_simao.ics">
+                                                <i class="fa fa-calendar-plus-o"></i> Adicionar ao Calendário
                                             </a>
-
-                                            <a class="cal-btn" id="google-cal-link">
-                                                <i class="fa fa-google"></i> Google
-                                            </a>
-
-                                            <a class="cal-btn" id="outlook-link" target="_blank"
-                                                rel="noopener noreferrer">
-                                                <i class="fa fa-windows"></i> Outlook
-                                            </a>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <h2>Confirmação de Presença</h2>
                     <h3>Por favor confirmar até 31-01-2026</h3>
                     <form id="rsvp-form" class="rsvp-form" action="" method="POST">
@@ -722,83 +713,52 @@
             const eventDetails = {
                 title: "Casamento Matilde e Simão",
                 startTime: new Date("2026-05-08T13:45:00"),
-                endTime: new Date("2026-05-09T04:00:00"), // Party until 2 AM!
+                endTime: new Date("2026-05-09T04:00:00"),
                 location: "Igreja Matriz de Espinho, Espinho, Portugal",
-                description: "Casamento de Matilde e Simão.\n\nCerimónia às 13:45 na Igreja Matriz de Espinho, seguida de copo de água na Quinta Cardeal. Mais informações no site!"
+                description: "Casamento de Matilde e Simão.\n\n13:45: Cerimónia na Igreja Matriz de Espinho.\n16:00: Copo de água na Quinta Cardeal.\n\nMais informações no site!"
             };
 
-            // --- Add to Calendar Logic ---
-            const iCalLink = document.getElementById('ical-link');
-            const googleLink = document.getElementById('google-cal-link');
-            const outlookLink = document.getElementById('outlook-link');
+            // --- Function to Trigger the 'Add to Calendar' Modal ---
+            function showCalendarModal() {
 
-            // Helper to format dates for calendar URLs (YYYYMMDDTHHMMSSZ)
-            const toUtcISO = date => date.toISOString().replace(/-|:|\.\d+/g, '');
+                // 1. Universal Calendar Link (.ics file)
+                // This is the most compatible method. When tapped on any modern phone (Samsung,
+                // Google, iPhone), the operating system will ask the user which calendar
+                // app they want to use to open the event.
+                const universalLink = document.getElementById('universal-cal-link');
 
-            // 1. Universal .ics Link (Works everywhere, best for Apple devices)
-            if (iCalLink && typeof ouical !== 'undefined') {
-                const calendar = ouical({
-                    title: eventDetails.title,
-                    start: eventDetails.startTime,
-                    end: eventDetails.endTime,
-                    address: eventDetails.location,
-                    description: eventDetails.description
-                });
-                iCalLink.href = encodeURI("data:text/calendar;charset=utf8," + calendar.generate());
+                // Ensure the ouical library is loaded before proceeding
+                if (universalLink && typeof ouical !== 'undefined') {
+                    const calendar = ouical({
+                        title: eventDetails.title,
+                        start: eventDetails.startTime,
+                        end: eventDetails.endTime,
+                        address: eventDetails.location,
+                        description: eventDetails.description
+                    });
+                    // This generates the .ics file content and attaches it to the link
+                    universalLink.href = encodeURI("data:text/calendar;charset=utf8," + calendar.generate());
+                } else {
+                    // Fallback or error handling if the script didn't load
+                    console.error("ouical.js library not found or link element is missing.");
+                    if (universalLink) universalLink.style.display = 'none'; // Hide the button if it can't work
+                }
+
+                // 2. Finally, show the Bootstrap modal
+                $('#rsvp-modal').modal('show');
             }
 
-            // 2. Platform-Aware Google Calendar Link
-            if (googleLink) {
-                // Standard web URL (the fallback)
-                const webUrl = new URL("https://www.google.com/calendar/render");
-                webUrl.searchParams.append("action", "TEMPLATE");
-                webUrl.searchParams.append("text", eventDetails.title);
-                webUrl.searchParams.append("dates", `${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}`);
-                webUrl.searchParams.append("details", eventDetails.description);
-                webUrl.searchParams.append("location", eventDetails.location);
-
-                googleLink.addEventListener('click', function (e) {
+            // --- RSVP Form Submission Handler ---
+            const rsvpForm = document.getElementById('rsvp-form');
+            if (rsvpForm) {
+                rsvpForm.addEventListener('submit', function (e) {
+                    // Prevent the default form submission (which reloads the page)
                     e.preventDefault();
-                    const userAgent = navigator.userAgent;
 
-                    if (/android/i.test(userAgent)) {
-                        // Android Intent: Tries to open the app directly
-                        const intentUrl = `intent://#Intent;action=android.intent.action.INSERT;data=content://com.android.calendar/events;S.title=${encodeURIComponent(eventDetails.title)};S.description=${encodeURIComponent(eventDetails.description)};S.eventLocation=${encodeURIComponent(eventDetails.location)};L.beginTime=${eventDetails.startTime.getTime()};L.endTime=${eventDetails.endTime.getTime()};S.browser_fallback_url=${encodeURIComponent(webUrl.toString())};end`;
-                        window.location.href = intentUrl;
-                    } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-                        // iOS: Try app, fallback to web
-                        const appUrl = new URL("googlecalendar://co");
-                        appUrl.searchParams.append("action", "CREATE_EVENT");
-                        appUrl.searchParams.append("text", eventDetails.title);
-                        appUrl.searchParams.append("dates", `${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}`);
-                        appUrl.searchParams.append("details", eventDetails.description);
-                        appUrl.searchParams.append("location", eventDetails.location);
-
-                        // Attempt to open the app
-                        window.location.href = appUrl.toString();
-
-                        // If it fails, redirect to web after a timeout
-                        setTimeout(function () {
-                            window.location.href = webUrl.toString();
-                        }, 2500);
-                    } else {
-                        // Desktop and other OS: Open web link in a new tab
-                        window.open(webUrl.toString(), '_blank');
-                    }
+                    // In a real application, you would send the form data to a server here.
+                    // For now, we assume success and directly call the modal function.
+                    showCalendarModal();
                 });
-            }
-
-            // 3. Outlook Web Link (Most reliable method for Outlook)
-            if (outlookLink) {
-                const outlookUrl = new URL("https://outlook.live.com/calendar/0/deeplink/compose");
-                outlookUrl.searchParams.append("path", "/calendar/action/compose");
-                outlookUrl.searchParams.append("rru", "addevent");
-                outlookUrl.searchParams.append("subject", eventDetails.title);
-                outlookUrl.searchParams.append("startdt", eventDetails.startTime.toISOString());
-                outlookUrl.searchParams.append("enddt", eventDetails.endTime.toISOString());
-                outlookUrl.searchParams.append("body", eventDetails.description);
-                outlookUrl.searchParams.append("location", eventDetails.location);
-                outlookLink.href = outlookUrl.toString();
             }
 
             // --- Countdown Timer ---
