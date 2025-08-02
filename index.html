@@ -144,14 +144,22 @@
             align-items: center;   /* Centers items horizontally */
         }
         
-        /* Remove the problematic margin and background from the logo */
+        /* Style for the logo with a translucent background */
         .hero-logo {
             max-width: 600px !important;
             width: 100% !important;
             height: auto !important;
             margin-bottom: 40px !important; /* Proper spacing */
-            margin-top: 350px !important; /* Proper spacing */
-            background: none !important; /* Remove black overlay */
+            margin-top: 500px !important; /* Proper spacing */
+            
+            /* This adds the translucent black background */
+            background-color: rgba(0, 0, 0, 0.8) !important; 
+            
+            /* Optional: Adds some space around the logo inside the background */
+            padding: 10px; 
+            
+            /* Optional: Rounds the corners of the background */
+            border-radius: 15px; 
         }
         
         /* Consistent Button Styling */
