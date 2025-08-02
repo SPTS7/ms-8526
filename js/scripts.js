@@ -189,7 +189,7 @@ $(document).ready(function () {
         if (parseInt($('#invite_code').val(), 10) !== 8526) {
             $('#alert-wrapper').html(alert_markup('danger', '<strong>Desculpa!</strong> O teu código está incorreto.'));
         } else {
-            $.post('https://script.google.com/macros/s/AKfycby4lkUgeWTQvVky5pwh6tvtrJy-4ySnnGN0J7wjkOGtHCNDcRlz1un4nTlIZ-v0fghFWQ/exec', data)
+            $.post('https://script.google.com/macros/s/AKfycbxQ44d3i2E6JhdVvaPxjPgiYmF_qWNvv-36563836Jsu38X2aKyLDPQFeYQTBo_X5wpOg/exec', data)
                 .done(function (data) {
                     console.log(data);
                     if (data.result === "error") {
