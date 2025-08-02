@@ -1,8 +1,9 @@
 <!doctype html>
 <html class="no-js" lang="pt">
+
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Nós Matilde e Simão, vamos casar!</title>
     <meta name="description" content="Temos o prazer de vos convidar para o nosso casamento.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,56 +22,67 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/jquery.fancybox.css">
     <link rel="stylesheet" href="css/flexslider.css">
     <link rel="stylesheet" href="css/styles.min.css">
     <link rel="stylesheet" href="css/queries.css">
-    
+
     <style>
         html {
             scroll-behavior: smooth;
         }
+
         .header-logo img {
             width: 100px;
             height: auto;
         }
+
         .hero-image-container {
             position: relative;
         }
+
         .hero-image {
             width: 100%;
             height: auto;
             margin-top: 0px;
             background-color: rgba(0, 0, 0, 0.5);
         }
+
         .intro-text p:last-of-type {
             margin-top: -30px;
         }
+
         .invitation-image-container {
             display: flex;
             justify-content: center;
         }
+
         .invitation-image {
             width: 80%;
             height: auto;
         }
+
         .countdown-images-container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100%;
         }
+
         .countdown-image {
             width: 50%;
             height: auto;
         }
+
         .countdown-container {
             font-size: 1.2em;
         }
@@ -94,31 +106,45 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-blue);
             font-weight: 700;
         }
-        
+
         p {
             line-height: 1.8;
         }
 
         /* --- Hero Section Overhaul --- */
         .hero {
-        position: relative;
-        min-height: 85vh;
-        /* Increased bottom padding for mobile view */
-        padding: 40px 0 60px 0; 
-        display: flex;
-        /* This aligns the content to the bottom on mobile */
-        align-items: flex-end; 
-        justify-content: center;
-        background-image: url('img/hero-min.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
+            position: relative;
+            min-height: 85vh;
+            /* Increased bottom padding for mobile view */
+            padding: 40px 0 60px 0;
+            display: flex;
+            /* This aligns the content to the bottom on mobile */
+            align-items: flex-end;
+            justify-content: center;
+            background-image: url('img/hero-min.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* --- Fix for Mobile Background Zoom --- */
+        /* This targets mobile devices and tablets */
+        @media (max-width: 768px) {
+            .hero {
+                /* Disables the fixed background, which causes the zoom issue on iOS */
+                background-attachment: scroll;
+            }
+        }
 
         /* Add a dark blue overlay to make text readable */
         .hero::before {
@@ -141,25 +167,27 @@
 
         .hero-content {
             display: flex;
-            flex-direction: column; /* Stacks items vertically */
-            align-items: center;   /* Centers items horizontally */
+            flex-direction: column;
+            /* Stacks items vertically */
+            align-items: center;
+            /* Centers items horizontally */
         }
-        
+
         /* Style for the logo with a translucent background */
         .hero-logo {
             max-width: 600px !important;
             width: 100% !important;
             height: auto !important;
-            
+
             /* This adds the translucent black background */
             /* background-color: rgba(0, 0, 0, 0.8) !important; */
             /* filter: drop-shadow(0px 0px 6px black); */
-            
+
             /* Optional: Adds some space around the logo inside the background */
-            padding: 10px; 
-            
+            padding: 10px;
+
             /* Optional: Rounds the corners of the background */
-            border-radius: 15px; 
+            border-radius: 15px;
         }
 
         /* --- Media Query for Desktops --- */
@@ -167,17 +195,18 @@
         @media (min-width: 768px) {
             .hero {
                 /* Reset the alignment to center for desktop */
-                align-items: center; 
+                align-items: center;
                 /* Reset the padding for desktop */
-                padding: 40px 0; 
+                padding: 40px 0;
             }
+
             .hero-logo {
                 /* Add the desired top margin back for the desktop view */
                 margin-top: 450px !important;
                 margin-bottom: 40px !important;
             }
         }
-        
+
         /* Consistent Button Styling */
         .btn {
             font-family: 'Montserrat', sans-serif;
@@ -189,67 +218,80 @@
             padding: 12px 28px;
         }
 
-        .btn-fill, .hero-button, .rsvp-btn {
+        .btn-fill,
+        .hero-button,
+        .rsvp-btn {
             background-color: var(--primary-blue) !important;
             color: var(--primary-gold) !important;
             border: 2px solid var(--primary-gold) !important;
         }
 
-        .btn-fill:hover, .hero-button:hover, .rsvp-btn:hover {
+        .btn-fill:hover,
+        .hero-button:hover,
+        .rsvp-btn:hover {
             background-color: var(--primary-gold) !important;
             color: var(--primary-blue) !important;
             border-color: var(--primary-blue) !important;
         }
-        
+
         /* --- Events (Informações) Section --- */
         /* Use Flexbox on the row to make columns equal height */
         .events .row {
             display: flex;
             flex-wrap: wrap;
         }
-        .events .leftcol, .events .rightcol {
+
+        .events .leftcol,
+        .events .rightcol {
             padding: 20px;
         }
+
         .events h3 {
             margin-top: 0;
         }
-        .events .wp3, .events .wp4 {
+
+        .events .wp3,
+        .events .wp4 {
             border: 1px solid #e0e0e0;
             padding: 30px;
             border-radius: 8px;
             height: 100%;
             background-color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
         }
 
-        .events .wp3 .btn, 
+        .events .wp3 .btn,
         .events .wp4 .btn {
             margin-top: auto;
         }
 
         /* --- Countdown Section --- */
         #countdown {
-            font-size: 1.5em; /* Larger font size */
+            font-size: 1.5em;
+            /* Larger font size */
             font-weight: bold;
             color: var(--primary-blue);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
             border: 2px solid var(--primary-gold);
             padding: 20px;
             border-radius: 8px;
             background-color: rgba(255, 255, 255, 0.7);
             display: inline-block;
         }
+
         #time {
-            background-color: #f4f2ed; /* Light gold background */
+            background-color: #f4f2ed;
+            /* Light gold background */
         }
+
         @media (min-width: 768px) {
-        #time .row {
-            display: flex;
-            align-items: center;
+            #time .row {
+                display: flex;
+                align-items: center;
+            }
         }
-}
 
         /* --- RSVP Section --- */
         .rsvp {
@@ -257,85 +299,160 @@
             padding-top: 80px;
             padding-bottom: 80px;
         }
-        .rsvp h2, .rsvp h3 {
+
+        .rsvp h2,
+        .rsvp h3 {
             color: var(--primary-blue);
         }
+
         .form-input-group input {
             background-color: #fff !important;
             border-color: var(--primary-blue) !important;
             color: var(--text-dark) !important;
         }
+
         .form-input-group input::placeholder {
             color: #999;
         }
+
         .form-input-group i {
             color: var(--primary-blue);
         }
 
         /* --- Slideshow Section --- */
-        .slideshow-container { 
-            position: relative; 
-            max-width: 900px; 
-            margin: auto; 
-            background: var(--primary-blue); 
-            border-radius: 8px; 
-            overflow: hidden; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        .slideshow-container {
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+            background: var(--primary-blue);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-        .slide { display: none; width: 100%; height: 550px; }
-        .slide.active { display: block; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .slide:hover img { transform: scale(1.05); }
-        .slideshow-nav { 
-            cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); 
-            padding: 16px; color: var(--primary-blue); background: var(--primary-gold); 
-            font-weight: bold; font-size: 18px; border: none; user-select: none; 
-            transition: background-color 0.3s ease; z-index: 10; 
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 550px;
         }
-        .slideshow-nav:hover { background: #fff; }
-        .slideshow-prev { left: 0; border-radius: 0 3px 3px 0; }
-        .slideshow-next { right: 0; border-radius: 3px 0 0 3px; }
-        .dots-container { text-align: center; margin-top: 20px; }
-        .dot { 
-            cursor: pointer; height: 15px; width: 15px; margin: 0 5px; 
-            background-color: #ccc; border: 2px solid var(--primary-gold);
-            border-radius: 50%; display: inline-block; transition: all 0.3s ease;
+
+        .slide.active {
+            display: block;
         }
-        .dot.active, .dot:hover { 
-            background-color: var(--primary-gold); transform: scale(1.2); 
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
+
+        .slide:hover img {
+            transform: scale(1.05);
+        }
+
+        .slideshow-nav {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            color: var(--primary-blue);
+            background: var(--primary-gold);
+            font-weight: bold;
+            font-size: 18px;
+            border: none;
+            user-select: none;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        .slideshow-nav:hover {
+            background: #fff;
+        }
+
+        .slideshow-prev {
+            left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .slideshow-next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .dots-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #ccc;
+            border: 2px solid var(--primary-gold);
+            border-radius: 50%;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: var(--primary-gold);
+            transform: scale(1.2);
+        }
+
         @media (max-width: 768px) {
-            .slide { height: 300px; }
-            .slideshow-nav { padding: 12px; font-size: 16px; }
+            .slide {
+                height: 300px;
+            }
+
+            .slideshow-nav {
+                padding: 12px;
+                font-size: 16px;
+            }
         }
-        
+
         /* --- Footer --- */
         footer {
             background-color: var(--primary-blue);
         }
+
         .to-top {
             /* Simplified style for just the arrow */
             color: var(--primary-gold);
-            font-size: 28px; /* Made the arrow icon larger */
+            font-size: 28px;
+            /* Made the arrow icon larger */
             text-decoration: none;
-            
+
             /* Animation and Focus */
             transition: transform 0.2s ease, color 0.2s ease;
             outline: none !important;
         }
+
         .to-top:hover {
             /* Change color and add a subtle grow effect on hover */
-            color: var(--background-light); /* Lighter color on hover */
+            color: var(--background-light);
+            /* Lighter color on hover */
             transform: scale(1.2);
         }
-        .to-top:focus, .to-top:active, .to-top:visited, .to-top:focus-visible {
+
+        .to-top:focus,
+        .to-top:active,
+        .to-top:visited,
+        .to-top:focus-visible {
             outline: none !important;
             box-shadow: none !important;
         }
+
         footer .content {
             display: flex;
-            justify-content: center; /* Horizontally centers the arrow */
-            align-items: center;   /* Vertically centers the arrow */
+            justify-content: center;
+            /* Horizontally centers the arrow */
+            align-items: center;
+            /* Vertically centers the arrow */
         }
     </style>
 
@@ -367,9 +484,9 @@
                     <h3>Queridos familiares e amigos,</h3>
                     <p>
                         Depois de 10 anos juntos, decidimos dar este grande passo!
-                        Queremos celebrar com família e amigos, e será uma grande 
+                        Queremos celebrar com família e amigos, e será uma grande
                         alegria ter a vossa presença neste dia tão especial para nós.
-                        Criámos este site-convite para que tenham todas as informações 
+                        Criámos este site-convite para que tenham todas as informações
                         úteis para o grande dia e para que possam confirmar a vossa presença.
                     </p>
                     <h2>O convite</h2>
@@ -394,7 +511,8 @@
                         <h3>Cerimónia</h3>
                         <h5>Igreja Matriz de Espinho <span class="time">13:45 Horas</span></h5>
                         <p>A cerimónia religiosa será na Igreja Matriz de Espinho.</p>
-                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/KdJvC325ZXkZRypK6" target="_blank" rel="noopener">
+                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/KdJvC325ZXkZRypK6"
+                            target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
                         </a>
                     </div>
@@ -404,16 +522,20 @@
                         <h3>Copo de Água</h3>
                         <h5>Quinta Cardeal <span class="time">16:00 Horas</span></h5>
                         <p>A festa continuará em Vila do Conde, na Quinta Cardeal, um espaço acolhedor.</p>
-                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/eatuxK1RSaNN7fAz9" target="_blank" rel="noopener">
+                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/eatuxK1RSaNN7fAz9"
+                            target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
                         </a>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
-                     <div class="wp3">
+                    <div class="wp3">
                         <h3>Onde Ficar</h3>
-                        <p>Queremos que aproveitem cada momento da festa sem preocupações! Para descansarem perto da quinta, explorem as opções de hotéis na zona. </p>
-                        <a class="btn btn-fill btn-small" href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&label=gog235jc-1DCAsouwFCFWNhc2EtZGEtY2VyY2EtZm9ybmVsb0gfWANouwGIAQKYAR-4AQnIARHYAQPoAQH4AQKIAgGoAgO4Ao7akb8GwAIB0gIkYWI1ZWVlZTItNGFkMi00OWI1LWE3MmItYTc3YTY0ZjAwODk52AIE4AIB&sid=8f54bcaae76864175dfd89d75a460542&aid=356980&lang=pt-pt&sb=1&src_elem=sb&src=city&dest_id=-2179489&dest_type=city&checkin=2026-05-08&checkout=2026-05-09&sb_lp=1" target="_blank" rel="noopener">
+                        <p>Queremos que aproveitem cada momento da festa sem preocupações! Para descansarem perto da
+                            quinta, explorem as opções de hotéis na zona. </p>
+                        <a class="btn btn-fill btn-small"
+                            href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&label=gog235jc-1DCAsouwFCFWNhc2EtZGEtY2VyY2EtZm9ybmVsb0gfWANouwGIAQKYAR-4AQnIARHYAQPoAQH4AQKIAgGoAgO4Ao7akb8GwAIB0gIkYWI1ZWVlZTItNGFkMi00OWI1LWE3MmItYTc3YTY0ZjAwODk52AIE4AIB&sid=8f54bcaae76864175dfd89d75a460542&aid=356980&lang=pt-pt&sb=1&src_elem=sb&src=city&dest_id=-2179489&dest_type=city&checkin=2026-05-08&checkout=2026-05-09&sb_lp=1"
+                            target="_blank" rel="noopener">
                             <i class="fa fa-bed"></i> Booking
                         </a>
                     </div>
@@ -427,8 +549,10 @@
             <div class="row text-center">
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="countdown-images-container">
-                        <img src="img/1.svg" class="img-responsive wp1 countdown-image" alt="Ilustração noiva e noivo 1">
-                        <img src="img/2.svg" class="img-responsive wp1 countdown-image" alt="Ilustração noiva e noivo 2">
+                        <img src="img/1.svg" class="img-responsive wp1 countdown-image"
+                            alt="Ilustração noiva e noivo 1">
+                        <img src="img/2.svg" class="img-responsive wp1 countdown-image"
+                            alt="Ilustração noiva e noivo 2">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 countdown-container">
@@ -439,62 +563,76 @@
         </div>
     </section>
 
-<section class="rsvp text-center" id="rsvp">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+    <section class="rsvp text-center" id="rsvp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 
-                <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>×</span></button>
-                                <div class="section-padding">
-                                    <h3>Obrigado!</h3>
-                                    <p>Estamos muito contentes por te juntares a nós neste momento!</p>
-                                    <div id="add-to-cal"></div>
+                    <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span>×</span></button>
+                                    <div class="section-padding">
+                                        <h3>Obrigado!</h3>
+                                        <p>Estamos muito contentes por te juntares a nós neste momento!</p>
+                                        <div id="add-to-cal"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div></div></div><h2>Confirmação de Presença</h2>
-                <h3>Por favor confirmar até 31-01-2026</h3>
-                <form id="rsvp-form" class="rsvp-form" action="" method="POST">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-user"></i><input name="name" placeholder="Nome" required></div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-envelope"></i><input type="email" name="email" placeholder="Email" required></div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-users"></i><input type="number" name="adults" min="1" max="10" placeholder="Nº de Adultos" required></div>
+                    <h2>Confirmação de Presença</h2>
+                    <h3>Por favor confirmar até 31-01-2026</h3>
+                    <form id="rsvp-form" class="rsvp-form" action="" method="POST">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-input-group"><i class="fa fa-user"></i><input name="name"
+                                        placeholder="Nome" required></div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-input-group"><i class="fa fa-envelope"></i><input type="email"
+                                        name="email" placeholder="Email" required></div>
+                            </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
-                             <div class="form-input-group"><i class="fa fa-users"></i><input type="number" name="children" min="0" max="10" placeholder="Nº de Crianças"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-input-group"><i class="fa fa-users"></i><input type="number"
+                                        name="adults" min="1" max="10" placeholder="Nº de Adultos" required></div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-input-group"><i class="fa fa-users"></i><input type="number"
+                                        name="children" min="0" max="10" placeholder="Nº de Crianças"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            
-                            <div class="form-input-group"><i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code" min="0" placeholder="Código do convite"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+
+                                <div class="form-input-group"><i class="fa fa-key"></i><input type="number"
+                                        name="invite_code" id="invite_code" min="0" placeholder="Código do convite">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-input-group"><i class="fa fa-cutlery"></i><input name="allergies"
+                                        placeholder="Restrições alimentar?"></div>
+                            </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group"><i class="fa fa-cutlery"></i><input name="allergies" placeholder="Restrições alimentar?"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-input-group"><i class="fa fa-music"></i><input name="music_suggestion"
+                                        placeholder="Deixem a vossa sugestão para o DJ"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-input-group"><i class="fa fa-music"></i><input name="music_suggestion" placeholder="Deixem a vossa sugestão para o DJ"></div>
+                        <div class="row">
+                            <div class="col-md-12" id="alert-wrapper"></div>
                         </div>
-                    </div>
-                    <div class="row"><div class="col-md-12" id="alert-wrapper"></div></div>
-                    <button class="btn-fill rsvp-btn">Confirmo a presença!</button>
-                </form>
+                        <button class="btn-fill rsvp-btn">Confirmo a presença!</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="eng-pics" class="section-padding">
         <div class="container">
@@ -515,11 +653,11 @@
                         <div class="slide"><img src="img/44.jpeg" alt="Foto da nossa história 4" loading="lazy"></div>
                         <div class="slide"><img src="img/55.jpeg" alt="Foto da nossa história 5" loading="lazy"></div>
                         <div class="slide"><img src="img/66.jpg" alt="Foto da nossa história 6" loading="lazy"></div>
-                        
+
                         <button class="slideshow-nav slideshow-prev" aria-label="Anterior">❮</button>
                         <button class="slideshow-nav slideshow-next" aria-label="Seguinte">❯</button>
                     </div>
-                    
+
                     <div class="dots-container">
                         <span class="dot"></span>
                         <span class="dot"></span>
@@ -546,107 +684,108 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" defer></script>
-    
+
     <script src="js/vendor/bootstrap.min.js" defer></script>
     <script src="js/jquery.fancybox.pack.js" defer></script>
     <script src="js/jquery.flexslider-min.js" defer></script>
     <script src="js/vendor/ouical.js" defer></script>
-    
+
     <script src="js/scripts.min.js" defer></script>
 
     <script defer>
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        // --- Countdown Timer ---
-        const countdownElement = document.getElementById("countdown");
-        if (countdownElement) {
-            const countDownDate = new Date("May 8, 2026 13:45:00").getTime();
-            
-            const interval = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = countDownDate - now;
+        document.addEventListener('DOMContentLoaded', function () {
 
-                if (distance < 0) {
-                    clearInterval(interval);
-                    countdownElement.innerHTML = "O grande dia chegou!";
-                    return;
+            // --- Countdown Timer ---
+            const countdownElement = document.getElementById("countdown");
+            if (countdownElement) {
+                const countDownDate = new Date("May 8, 2026 13:45:00").getTime();
+
+                const interval = setInterval(function () {
+                    const now = new Date().getTime();
+                    const distance = countDownDate - now;
+
+                    if (distance < 0) {
+                        clearInterval(interval);
+                        countdownElement.innerHTML = "O grande dia chegou!";
+                        return;
+                    }
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                }, 1000);
+            }
+
+            // --- Slideshow ---
+            const slideshowContainer = document.querySelector('.slideshow-container');
+            if (slideshowContainer) {
+                let currentSlideIndex = 0;
+                const slides = document.querySelectorAll('.slide');
+                const dots = document.querySelectorAll('.dot');
+                const prevButton = document.querySelector('.slideshow-prev');
+                const nextButton = document.querySelector('.slideshow-next');
+                let slideInterval;
+
+                function showSlide(index) {
+                    // Ensure index is within bounds
+                    if (index >= slides.length) {
+                        currentSlideIndex = 0;
+                    } else if (index < 0) {
+                        currentSlideIndex = slides.length - 1;
+                    } else {
+                        currentSlideIndex = index;
+                    }
+
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    dots.forEach(dot => dot.classList.remove('active'));
+
+                    slides[currentSlideIndex].classList.add('active');
+                    dots[currentSlideIndex].classList.add('active');
                 }
 
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }, 1000);
-        }
-
-        // --- Slideshow ---
-        const slideshowContainer = document.querySelector('.slideshow-container');
-        if (slideshowContainer) {
-            let currentSlideIndex = 0;
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.dot');
-            const prevButton = document.querySelector('.slideshow-prev');
-            const nextButton = document.querySelector('.slideshow-next');
-            let slideInterval;
-
-            function showSlide(index) {
-                // Ensure index is within bounds
-                if (index >= slides.length) {
-                    currentSlideIndex = 0;
-                } else if (index < 0) {
-                    currentSlideIndex = slides.length - 1;
-                } else {
-                    currentSlideIndex = index;
+                function startAutoSlide() {
+                    clearInterval(slideInterval); // Prevent multiple intervals
+                    slideInterval = setInterval(() => {
+                        showSlide(currentSlideIndex + 1);
+                    }, 4000);
                 }
 
-                slides.forEach(slide => slide.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
+                // Event Listeners
+                if (prevButton) {
+                    prevButton.addEventListener('click', () => {
+                        showSlide(currentSlideIndex - 1);
+                        startAutoSlide(); // Reset timer on manual navigation
+                    });
+                }
 
-                slides[currentSlideIndex].classList.add('active');
-                dots[currentSlideIndex].classList.add('active');
-            }
+                if (nextButton) {
+                    nextButton.addEventListener('click', () => {
+                        showSlide(currentSlideIndex + 1);
+                        startAutoSlide();
+                    });
+                }
 
-            function startAutoSlide() {
-                clearInterval(slideInterval); // Prevent multiple intervals
-                slideInterval = setInterval(() => {
-                    showSlide(currentSlideIndex + 1);
-                }, 4000);
-            }
-
-            // Event Listeners
-            if(prevButton) {
-                prevButton.addEventListener('click', () => {
-                    showSlide(currentSlideIndex - 1);
-                    startAutoSlide(); // Reset timer on manual navigation
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        showSlide(index);
+                        startAutoSlide();
+                    });
                 });
-            }
-            
-            if(nextButton) {
-                nextButton.addEventListener('click', () => {
-                    showSlide(currentSlideIndex + 1);
+
+                slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+                slideshowContainer.addEventListener('mouseleave', startAutoSlide);
+
+                // Initialise
+                if (slides.length > 0) {
+                    showSlide(0);
                     startAutoSlide();
-                });
+                }
             }
-
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    showSlide(index);
-                    startAutoSlide();
-                });
-            });
-
-            slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
-            slideshowContainer.addEventListener('mouseleave', startAutoSlide);
-
-            // Initialise
-            if(slides.length > 0) {
-                showSlide(0);
-                startAutoSlide();
-            }
-        }
-    });
+        });
     </script>
 </body>
+
 </html>
