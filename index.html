@@ -319,6 +319,7 @@
             background-color: var(--primary-blue);
             color: var(--primary-gold) !important;
             border: 2px solid var(--primary-gold);
+            cursor: pointer;
         }
 
         .cal-btn:hover {
@@ -516,7 +517,8 @@
                         <h3>Cerimónia</h3>
                         <h5>Igreja Matriz de Espinho <span class="time">13:45 Horas</span></h5>
                         <p>A cerimónia religiosa será na Igreja Matriz de Espinho.</p>
-                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/KdJvC325ZXkZRypK6"
+                        <a class="btn btn-fill btn-small"
+                            href="https://www.google.com/maps/search/?api=1&query=Igreja+Matriz+de+Espinho"
                             target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
                         </a>
@@ -527,7 +529,8 @@
                         <h3>Copo de Água</h3>
                         <h5>Quinta Cardeal <span class="time">16:00 Horas</span></h5>
                         <p>A festa continuará em Vila do Conde, na Quinta Cardeal, um espaço acolhedor.</p>
-                        <a class="btn btn-fill btn-small" href="https://maps.app.goo.gl/eatuxK1RSaNN7fAz9"
+                        <a class="btn btn-fill btn-small"
+                            href="https://www.google.com/maps/search/?api=1&query=Quinta+Cardeal+Vila+do+Conde"
                             target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
                         </a>
@@ -586,13 +589,13 @@
                                             <h4>Adicionar ao Calendário:</h4>
 
                                             <a class="cal-btn" id="ical-link" download="casamento_matilde_simao.ics">
-                                                <i class="fa fa-calendar-plus-o"></i> Adicionar ao Calendário
+                                                <i class="fa fa-calendar-plus-o"></i> Apple / Outros
                                             </a>
 
-                                            <a class="cal-btn" id="google-cal-link" target="_blank"
-                                                rel="noopener noreferrer">
+                                            <a class="cal-btn" id="google-cal-link">
                                                 <i class="fa fa-google"></i> Google
                                             </a>
+
                                             <a class="cal-btn" id="outlook-link" target="_blank"
                                                 rel="noopener noreferrer">
                                                 <i class="fa fa-windows"></i> Outlook
@@ -719,8 +722,7 @@
             const eventDetails = {
                 title: "Casamento Matilde e Simão",
                 startTime: new Date("2026-05-08T13:45:00"),
-                // Set a reasonable end time, e.g., 10 hours later
-                endTime: new Date("2026-05-09T04:00:00"),
+                endTime: new Date("2026-05-09T04:00:00"), // Party until 2 AM!
                 location: "Igreja Matriz de Espinho, Espinho, Portugal",
                 description: "Casamento de Matilde e Simão.\n\nCerimónia às 13:45 na Igreja Matriz de Espinho, seguida de copo de água na Quinta Cardeal. Mais informações no site!"
             };
@@ -730,7 +732,10 @@
             const googleLink = document.getElementById('google-cal-link');
             const outlookLink = document.getElementById('outlook-link');
 
-            // 1. Universal .ics Link (Best for Mobile)
+            // Helper to format dates for calendar URLs (YYYYMMDDTHHMMSSZ)
+            const toUtcISO = date => date.toISOString().replace(/-|:|\.\d+/g, '');
+
+            // 1. Universal .ics Link (Works everywhere, best for Apple devices)
             if (iCalLink && typeof ouical !== 'undefined') {
                 const calendar = ouical({
                     title: eventDetails.title,
@@ -739,23 +744,51 @@
                     address: eventDetails.location,
                     description: eventDetails.description
                 });
-                // Embed the .ics file content directly into the link
                 iCalLink.href = encodeURI("data:text/calendar;charset=utf8," + calendar.generate());
             }
 
-            // 2. Google Calendar Web Link (Reliable Fallback)
+            // 2. Platform-Aware Google Calendar Link
             if (googleLink) {
-                const toGoogleISO = date => date.toISOString().replace(/-|:|\.\d+/g, '');
-                const googleUrl = new URL("https://www.google.com/calendar/render");
-                googleUrl.searchParams.append("action", "TEMPLATE");
-                googleUrl.searchParams.append("text", eventDetails.title);
-                googleUrl.searchParams.append("dates", `${toGoogleISO(eventDetails.startTime)}/${toGoogleISO(eventDetails.endTime)}`);
-                googleUrl.searchParams.append("details", eventDetails.description);
-                googleUrl.searchParams.append("location", eventDetails.location);
-                googleLink.href = googleUrl.toString();
+                // Standard web URL (the fallback)
+                const webUrl = new URL("https://www.google.com/calendar/render");
+                webUrl.searchParams.append("action", "TEMPLATE");
+                webUrl.searchParams.append("text", eventDetails.title);
+                webUrl.searchParams.append("dates", `${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}`);
+                webUrl.searchParams.append("details", eventDetails.description);
+                webUrl.searchParams.append("location", eventDetails.location);
+
+                googleLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const userAgent = navigator.userAgent;
+
+                    if (/android/i.test(userAgent)) {
+                        // Android Intent: Tries to open the app directly
+                        const intentUrl = `intent://#Intent;action=android.intent.action.INSERT;data=content://com.android.calendar/events;S.title=${encodeURIComponent(eventDetails.title)};S.description=${encodeURIComponent(eventDetails.description)};S.eventLocation=${encodeURIComponent(eventDetails.location)};L.beginTime=${eventDetails.startTime.getTime()};L.endTime=${eventDetails.endTime.getTime()};S.browser_fallback_url=${encodeURIComponent(webUrl.toString())};end`;
+                        window.location.href = intentUrl;
+                    } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+                        // iOS: Try app, fallback to web
+                        const appUrl = new URL("googlecalendar://co");
+                        appUrl.searchParams.append("action", "CREATE_EVENT");
+                        appUrl.searchParams.append("text", eventDetails.title);
+                        appUrl.searchParams.append("dates", `${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}`);
+                        appUrl.searchParams.append("details", eventDetails.description);
+                        appUrl.searchParams.append("location", eventDetails.location);
+
+                        // Attempt to open the app
+                        window.location.href = appUrl.toString();
+
+                        // If it fails, redirect to web after a timeout
+                        setTimeout(function () {
+                            window.location.href = webUrl.toString();
+                        }, 2500);
+                    } else {
+                        // Desktop and other OS: Open web link in a new tab
+                        window.open(webUrl.toString(), '_blank');
+                    }
+                });
             }
 
-            // 3. Outlook Web Link (Reliable Fallback)
+            // 3. Outlook Web Link (Most reliable method for Outlook)
             if (outlookLink) {
                 const outlookUrl = new URL("https://outlook.live.com/calendar/0/deeplink/compose");
                 outlookUrl.searchParams.append("path", "/calendar/action/compose");
@@ -771,7 +804,7 @@
             // --- Countdown Timer ---
             const countdownElement = document.getElementById("countdown");
             if (countdownElement) {
-                const countDownDate = new Date("May 8, 2026 13:45:00").getTime();
+                const countDownDate = new Date("2026-05-08T13:45:00").getTime();
                 const interval = setInterval(function () {
                     const now = new Date().getTime();
                     const distance = countDownDate - now;
