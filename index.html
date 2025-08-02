@@ -321,6 +321,34 @@
             color: var(--primary-blue);
         }
 
+        /* --- Add to Calendar Button Styling --- */
+        .cal-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background-color: var(--primary-blue);
+            color: var(--primary-gold) !important;
+            /* Use important to override other link styles if needed */
+            border: 2px solid var(--primary-gold);
+        }
+
+        .cal-btn:hover {
+            background-color: var(--primary-gold);
+            color: var(--primary-blue) !important;
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .cal-btn i {
+            margin-right: 8px;
+            /* Adds space between icon and text */
+        }
+
         /* --- Slideshow Section --- */
         .slideshow-container {
             position: relative;
@@ -579,7 +607,20 @@
                                     <div class="section-padding">
                                         <h3>Obrigado!</h3>
                                         <p>Estamos muito contentes por te juntares a nós neste momento!</p>
-                                        <div id="add-to-cal"></div>
+                                        <div id="add-to-cal">
+                                            <h4>Adicionar ao Calendário:</h4>
+                                            <a class="cal-btn" id="google-cal-link" target="_blank"
+                                                rel="noopener noreferrer" href="#">
+                                                <i class="fa fa-google"></i> Google
+                                            </a>
+                                            <a class="cal-btn" id="ical-link" href="#">
+                                                <i class="fa fa-apple"></i> Apple / iCal
+                                            </a>
+                                            <a class="cal-btn" id="outlook-link" target="_blank"
+                                                rel="noopener noreferrer" href="#">
+                                                <i class="fa fa-windows"></i> Outlook
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -697,11 +738,64 @@
     <script defer>
         document.addEventListener('DOMContentLoaded', function () {
 
+            // --- Wedding Event Details ---
+            const eventDetails = {
+                title: "Casamento Matilde e Simão",
+                startTime: new Date("2026-05-08T13:45:00"),
+                // Let's set a reasonable end time, e.g., 10 hours later
+                endTime: new Date(new Date("2026-05-08T13:45:00").getTime() + 10 * 60 * 60 * 1000),
+                location: "Igreja Matriz de Espinho, Espinho, Portugal",
+                description: "Casamento de Matilde e Simão.\n\nCerimónia às 13:45 na Igreja Matriz de Espinho, seguida de copo de água na Quinta Cardeal. Mais informações no site!"
+            };
+
+            // --- Add to Calendar Logic ---
+            const googleLink = document.getElementById('google-cal-link');
+            const outlookLink = document.getElementById('outlook-link');
+            const iCalLink = document.getElementById('ical-link');
+
+            // Helper to format dates for Google Calendar (YYYYMMDDTHHMMSSZ)
+            const toGoogleISO = date => date.toISOString().replace(/-|:|\.\d+/g, '');
+
+            if (googleLink) {
+                const googleUrl = new URL("https://www.google.com/calendar/render");
+                googleUrl.searchParams.append("action", "TEMPLATE");
+                googleUrl.searchParams.append("text", eventDetails.title);
+                googleUrl.searchParams.append("dates", `${toGoogleISO(eventDetails.startTime)}/${toGoogleISO(eventDetails.endTime)}`);
+                googleUrl.searchParams.append("details", eventDetails.description);
+                googleUrl.searchParams.append("location", eventDetails.location);
+                googleLink.href = googleUrl.toString();
+            }
+
+            if (outlookLink) {
+                const outlookUrl = new URL("https://outlook.live.com/calendar/0/deeplink/compose");
+                outlookUrl.searchParams.append("path", "/calendar/action/compose");
+                outlookUrl.searchParams.append("rru", "addevent");
+                outlookUrl.searchParams.append("subject", eventDetails.title);
+                outlookUrl.searchParams.append("startdt", eventDetails.startTime.toISOString());
+                outlookUrl.searchParams.append("enddt", eventDetails.endTime.toISOString());
+                outlookUrl.searchParams.append("body", eventDetails.description);
+                outlookUrl.searchParams.append("location", eventDetails.location);
+                outlookLink.href = outlookUrl.toString();
+            }
+
+            if (iCalLink) {
+                iCalLink.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default link behavior
+                    const calendar = ouical({
+                        title: eventDetails.title,
+                        start: eventDetails.startTime,
+                        end: eventDetails.endTime,
+                        address: eventDetails.location,
+                        description: eventDetails.description
+                    });
+                    calendar.download("casamento_matilde_simao.ics");
+                });
+            }
+
             // --- Countdown Timer ---
             const countdownElement = document.getElementById("countdown");
             if (countdownElement) {
                 const countDownDate = new Date("May 8, 2026 13:45:00").getTime();
-
                 const interval = setInterval(function () {
                     const now = new Date().getTime();
                     const distance = countDownDate - now;
@@ -732,7 +826,6 @@
                 let slideInterval;
 
                 function showSlide(index) {
-                    // Ensure index is within bounds
                     if (index >= slides.length) {
                         currentSlideIndex = 0;
                     } else if (index < 0) {
@@ -749,17 +842,16 @@
                 }
 
                 function startAutoSlide() {
-                    clearInterval(slideInterval); // Prevent multiple intervals
+                    clearInterval(slideInterval);
                     slideInterval = setInterval(() => {
                         showSlide(currentSlideIndex + 1);
                     }, 4000);
                 }
 
-                // Event Listeners
                 if (prevButton) {
                     prevButton.addEventListener('click', () => {
                         showSlide(currentSlideIndex - 1);
-                        startAutoSlide(); // Reset timer on manual navigation
+                        startAutoSlide();
                     });
                 }
 
@@ -780,7 +872,6 @@
                 slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
                 slideshowContainer.addEventListener('mouseleave', startAutoSlide);
 
-                // Initialise
                 if (slides.length > 0) {
                     showSlide(0);
                     startAutoSlide();
