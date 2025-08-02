@@ -106,18 +106,19 @@
 
         /* --- Hero Section Overhaul --- */
         .hero {
-            position: relative; /* Needed for the overlay */
-            min-height: 85vh;
-            padding: 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Add your background image here */
-            background-image: url('img/hero-min.jpeg'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+        position: relative;
+        min-height: 85vh;
+        /* Increased bottom padding for mobile view */
+        padding: 40px 0 60px 0; 
+        display: flex;
+        /* This aligns the content to the bottom on mobile */
+        align-items: flex-end; 
+        justify-content: center;
+        background-image: url('img/hero-min.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
 
         /* Add a dark blue overlay to make text readable */
         .hero::before {
@@ -149,8 +150,6 @@
             max-width: 600px !important;
             width: 100% !important;
             height: auto !important;
-            margin-bottom: 40px !important; /* Proper spacing */
-            margin-top: 500px !important; /* Proper spacing */
             
             /* This adds the translucent black background */
             background-color: rgba(0, 0, 0, 0.8) !important; 
@@ -160,6 +159,22 @@
             
             /* Optional: Rounds the corners of the background */
             border-radius: 15px; 
+        }
+
+        /* --- Media Query for Desktops --- */
+        /* On screens 768px and wider, reset alignment and add margins */
+        @media (min-width: 768px) {
+            .hero {
+                /* Reset the alignment to center for desktop */
+                align-items: center; 
+                /* Reset the padding for desktop */
+                padding: 40px 0; 
+            }
+            .hero-logo {
+                /* Add the desired top margin back for the desktop view */
+                margin-top: 450px !important;
+                margin-bottom: 40px !important;
+            }
         }
         
         /* Consistent Button Styling */
