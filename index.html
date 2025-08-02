@@ -460,6 +460,56 @@
             justify-content: center;
             align-items: center;
         }
+
+        /* --- Enhanced Scroll-to-Top Button --- */
+        .to-top {
+            position: fixed;
+            /* Keep it in place while scrolling */
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-blue);
+            color: var(--primary-gold) !important;
+            width: 50px;
+            /* Set a fixed width */
+            height: 50px;
+            /* Set a fixed height */
+            border-radius: 50%;
+            /* Make it a circle */
+            border: 2px solid var(--primary-gold);
+            text-align: center;
+            font-size: 24px;
+            /* Adjust icon size if needed */
+            line-height: 46px;
+            /* Vertically center the icon */
+            z-index: 100;
+            /* Ensure it's above other content */
+
+            /* Hide it by default */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            /* Start slightly lower for a fade-in-up effect */
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* This class will be added by JavaScript to show the button */
+        .to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .to-top:hover {
+            background-color: var(--primary-gold);
+            color: var(--primary-blue) !important;
+            transform: scale(1.1);
+            /* Slightly enlarge on hover */
+        }
+
+        /* Provides instant feedback on tap/click */
+        .to-top:active {
+            transform: scale(0.95);
+        }
     </style>
 
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -690,7 +740,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center content">
-                    <span class="to-top-wrapper"><a href="#top" class="to-top"><i class="fa fa-angle-up"></i></a></span>
+                    <span class="to-top-wrapper"><a href="#top" class="to-top" id="to-top-btn"><i
+                                class="fa fa-angle-up"></i></a></span>
                 </div>
             </div>
         </div>
@@ -838,6 +889,29 @@
                     showSlide(0);
                     startAutoSlide();
                 }
+            }
+
+            // --- Scroll-to-Top Button Logic ---
+            const toTopButton = document.getElementById('to-top-btn');
+
+            if (toTopButton) {
+                // Show the button only when the user scrolls down 300px
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > 300) {
+                        toTopButton.classList.add('visible');
+                    } else {
+                        toTopButton.classList.remove('visible');
+                    }
+                });
+
+                // Handle the smooth scroll animation on click
+                toTopButton.addEventListener('click', function (e) {
+                    // Prevent the default jump-link behavior
+                    e.preventDefault();
+
+                    // Use jQuery's animate() for a reliable, smooth scroll
+                    $('html, body').animate({ scrollTop: 0 }, 500); // 500ms scroll duration
+                });
             }
         });
     </script>
