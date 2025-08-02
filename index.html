@@ -180,30 +180,18 @@
             max-width: 600px !important;
             width: 100% !important;
             height: auto !important;
-
-            /* This adds the translucent black background */
-            /* background-color: rgba(0, 0, 0, 0.8) !important; */
-            /* filter: drop-shadow(0px 0px 6px black); */
-
-            /* Optional: Adds some space around the logo inside the background */
             padding: 10px;
-
-            /* Optional: Rounds the corners of the background */
             border-radius: 15px;
         }
 
         /* --- Media Query for Desktops --- */
-        /* On screens 768px and wider, reset alignment and add margins */
         @media (min-width: 768px) {
             .hero {
-                /* Reset the alignment to center for desktop */
                 align-items: center;
-                /* Reset the padding for desktop */
                 padding: 40px 0;
             }
 
             .hero-logo {
-                /* Add the desired top margin back for the desktop view */
                 margin-top: 500px !important;
                 margin-bottom: 40px !important;
             }
@@ -237,7 +225,6 @@
         }
 
         /* --- Events (Informações) Section --- */
-        /* Use Flexbox on the row to make columns equal height */
         .events .row {
             display: flex;
             flex-wrap: wrap;
@@ -272,7 +259,6 @@
         /* --- Countdown Section --- */
         #countdown {
             font-size: 1.5em;
-            /* Larger font size */
             font-weight: bold;
             color: var(--primary-blue);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -285,7 +271,6 @@
 
         #time {
             background-color: #f4f2ed;
-            /* Light gold background */
         }
 
         @media (min-width: 768px) {
@@ -333,7 +318,6 @@
             transition: all 0.3s ease;
             background-color: var(--primary-blue);
             color: var(--primary-gold) !important;
-            /* Use important to override other link styles if needed */
             border: 2px solid var(--primary-gold);
         }
 
@@ -346,7 +330,6 @@
 
         .cal-btn i {
             margin-right: 8px;
-            /* Adds space between icon and text */
         }
 
         /* --- Slideshow Section --- */
@@ -451,21 +434,15 @@
         }
 
         .to-top {
-            /* Simplified style for just the arrow */
             color: var(--primary-gold);
             font-size: 28px;
-            /* Made the arrow icon larger */
             text-decoration: none;
-
-            /* Animation and Focus */
             transition: transform 0.2s ease, color 0.2s ease;
             outline: none !important;
         }
 
         .to-top:hover {
-            /* Change color and add a subtle grow effect on hover */
             color: var(--background-light);
-            /* Lighter color on hover */
             transform: scale(1.2);
         }
 
@@ -480,9 +457,7 @@
         footer .content {
             display: flex;
             justify-content: center;
-            /* Horizontally centers the arrow */
             align-items: center;
-            /* Vertically centers the arrow */
         }
     </style>
 
@@ -609,17 +584,19 @@
                                         <p>Estamos muito contentes por te juntares a nós neste momento!</p>
                                         <div id="add-to-cal">
                                             <h4>Adicionar ao Calendário:</h4>
+                                            <a class="cal-btn" id="ical-link" download="casamento_matilde_simao.ics">
+                                                <i class="fa fa-calendar-plus-o"></i> Adicionar ao Calendário
+                                            </a>
+
                                             <a class="cal-btn" id="google-cal-link" target="_blank"
-                                                rel="noopener noreferrer" href="#">
+                                                rel="noopener noreferrer">
                                                 <i class="fa fa-google"></i> Google
                                             </a>
-                                            <a class="cal-btn" id="ical-link" href="#">
-                                                <i class="fa fa-apple"></i> Apple / iCal
-                                            </a>
                                             <a class="cal-btn" id="outlook-link" target="_blank"
-                                                rel="noopener noreferrer" href="#">
+                                                rel="noopener noreferrer">
                                                 <i class="fa fa-windows"></i> Outlook
                                             </a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -651,7 +628,6 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
-
                                 <div class="form-input-group"><i class="fa fa-key"></i><input type="number"
                                         name="invite_code" id="invite_code" min="0" placeholder="Código do convite">
                                 </div>
@@ -738,25 +714,37 @@
     <script defer>
         document.addEventListener('DOMContentLoaded', function () {
 
-            // --- Wedding Event Details ---
+            // --- Wedding Event Details (Centralized) ---
             const eventDetails = {
                 title: "Casamento Matilde e Simão",
                 startTime: new Date("2026-05-08T13:45:00"),
-                // Let's set a reasonable end time, e.g., 10 hours later
-                endTime: new Date(new Date("2026-05-08T13:45:00").getTime() + 10 * 60 * 60 * 1000),
+                // Set a reasonable end time, e.g., 10 hours later
+                endTime: new Date("2026-05-09T04:00:00"),
                 location: "Igreja Matriz de Espinho, Espinho, Portugal",
                 description: "Casamento de Matilde e Simão.\n\nCerimónia às 13:45 na Igreja Matriz de Espinho, seguida de copo de água na Quinta Cardeal. Mais informações no site!"
             };
 
             // --- Add to Calendar Logic ---
+            const iCalLink = document.getElementById('ical-link');
             const googleLink = document.getElementById('google-cal-link');
             const outlookLink = document.getElementById('outlook-link');
-            const iCalLink = document.getElementById('ical-link');
 
-            // Helper to format dates for Google Calendar (YYYYMMDDTHHMMSSZ)
-            const toGoogleISO = date => date.toISOString().replace(/-|:|\.\d+/g, '');
+            // 1. Universal .ics Link (Best for Mobile)
+            if (iCalLink && typeof ouical !== 'undefined') {
+                const calendar = ouical({
+                    title: eventDetails.title,
+                    start: eventDetails.startTime,
+                    end: eventDetails.endTime,
+                    address: eventDetails.location,
+                    description: eventDetails.description
+                });
+                // Embed the .ics file content directly into the link
+                iCalLink.href = encodeURI("data:text/calendar;charset=utf8," + calendar.generate());
+            }
 
+            // 2. Google Calendar Web Link (Reliable Fallback)
             if (googleLink) {
+                const toGoogleISO = date => date.toISOString().replace(/-|:|\.\d+/g, '');
                 const googleUrl = new URL("https://www.google.com/calendar/render");
                 googleUrl.searchParams.append("action", "TEMPLATE");
                 googleUrl.searchParams.append("text", eventDetails.title);
@@ -766,6 +754,7 @@
                 googleLink.href = googleUrl.toString();
             }
 
+            // 3. Outlook Web Link (Reliable Fallback)
             if (outlookLink) {
                 const outlookUrl = new URL("https://outlook.live.com/calendar/0/deeplink/compose");
                 outlookUrl.searchParams.append("path", "/calendar/action/compose");
@@ -776,20 +765,6 @@
                 outlookUrl.searchParams.append("body", eventDetails.description);
                 outlookUrl.searchParams.append("location", eventDetails.location);
                 outlookLink.href = outlookUrl.toString();
-            }
-
-            if (iCalLink) {
-                iCalLink.addEventListener('click', function (e) {
-                    e.preventDefault(); // Prevent default link behavior
-                    const calendar = ouical({
-                        title: eventDetails.title,
-                        start: eventDetails.startTime,
-                        end: eventDetails.endTime,
-                        address: eventDetails.location,
-                        description: eventDetails.description
-                    });
-                    calendar.download("casamento_matilde_simao.ics");
-                });
             }
 
             // --- Countdown Timer ---
@@ -805,12 +780,10 @@
                         countdownElement.innerHTML = "O grande dia chegou!";
                         return;
                     }
-
                     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
                     countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
                 }, 1000);
             }
@@ -826,13 +799,8 @@
                 let slideInterval;
 
                 function showSlide(index) {
-                    if (index >= slides.length) {
-                        currentSlideIndex = 0;
-                    } else if (index < 0) {
-                        currentSlideIndex = slides.length - 1;
-                    } else {
-                        currentSlideIndex = index;
-                    }
+                    if (slides.length === 0) return;
+                    currentSlideIndex = (index + slides.length) % slides.length;
 
                     slides.forEach(slide => slide.classList.remove('active'));
                     dots.forEach(dot => dot.classList.remove('active'));
