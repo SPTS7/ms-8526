@@ -648,12 +648,40 @@
                 const icsHref = encodeURI('data:text/calendar;charset=utf8,' + icsData);
 
 
+
+                // --- 2. Create Google Button ---
+                const googleWebUrl = new URL("https://www.google.com/calendar/render");
+                googleWebUrl.searchParams.append("action", "TEMPLATE");
+                googleWebUrl.searchParams.append("text", eventDetails.title);
+                googleWebUrl.searchParams.append("dates", `${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}`);
+                googleWebUrl.searchParams.append("details", eventDetails.description);
+                googleWebUrl.searchParams.append("location", eventDetails.location);
+
+                $('<a>', {
+                    class: 'btn-fill cal-btn',
+                    href: '#',
+                    html: '<i class="fa fa-google"></i> DEKSTOP',
+                }).on('click', function (e) {
+                    e.preventDefault();
+                    const userAgent = navigator.userAgent;
+                    if (/android/i.test(userAgent)) {
+                        const intentUrl = `intent://#Intent;action=android.intent.action.INSERT;data=content://com.android.calendar/events;S.title=${encodeURIComponent(eventDetails.title)};S.description=${encodeURIComponent(eventDetails.description)};S.eventLocation=${encodeURIComponent(eventDetails.location)};L.beginTime=${eventDetails.startTime.getTime()};L.endTime=${eventDetails.endTime.getTime()};S.browser_fallback_url=${encodeURIComponent(googleWebUrl.toString())};end`;
+                        window.location.href = intentUrl;
+                    } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+                        const appUrl = `googlecalendar://co?action=CREATE_EVENT&text=${encodeURIComponent(eventDetails.title)}&dates=${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
+                        window.location.href = appUrl;
+                        setTimeout(() => window.open(googleWebUrl.toString(), '_blank'), 2500);
+                    } else {
+                        window.open(googleWebUrl.toString(), '_blank');
+                    }
+                }).appendTo($container);
+
                 // --- 3. Create Others Button ---
                 $('<a>', {
                     class: 'btn-fill cal-btn',
                     href: icsHref,
                     download: 'casamento_matilde_simao.ics',
-                    html: '<i class="fa fa-calendar-plus-o"></i> Download do evento'
+                    html: '<i class="fa fa-calendar-plus-o"></i> Mobile'
                 }).appendTo($container);
             }
 
