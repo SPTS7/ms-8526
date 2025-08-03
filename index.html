@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="pt">
+<html class.no-js" lang="pt">
 
 <head>
     <meta charset="utf-8">
@@ -37,24 +37,39 @@
     <link rel="stylesheet" href="css/queries.css">
 
     <style>
+        /* Base Styles */
         html {
-            /* scroll-behavior: smooth; has been removed to allow JS to control it */
+            scroll-behavior: smooth;
         }
 
-        .header-logo img {
-            width: 100px;
-            height: auto;
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333333;
+            background-color: #fdfdfa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .hero-image-container {
-            position: relative;
+        :root {
+            --primary-blue: #1b4a91;
+            --primary-gold: #beae92;
+            --text-dark: #333333;
+            --background-light: #fdfdfa;
         }
 
-        .hero-image {
-            width: 100%;
-            height: auto;
-            margin-top: 0px;
-            background-color: rgba(0, 0, 0, 0.5);
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        p {
+            line-height: 1.8;
         }
 
         .intro-text p:last-of-type {
@@ -86,42 +101,8 @@
         .countdown-container {
             font-size: 1.2em;
         }
-    </style>
 
-    <style>
-        /* Define color variables */
-        :root {
-            --primary-blue: #1b4a91;
-            --primary-gold: #beae92;
-            --text-dark: #333333;
-            --background-light: #fdfdfa;
-        }
-
-        /* --- General Typography & Body Styles --- */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--background-light);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-blue);
-            font-weight: 700;
-        }
-
-        p {
-            line-height: 1.8;
-        }
-
-        /* --- Hero Section Overhaul --- */
+        /* Hero Section */
         .hero {
             position: relative;
             min-height: 85vh;
@@ -133,12 +114,6 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                background-attachment: scroll;
-            }
         }
 
         .hero::before {
@@ -172,6 +147,12 @@
             border-radius: 15px;
         }
 
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+
         @media (min-width: 768px) {
             .hero {
                 align-items: center;
@@ -184,7 +165,7 @@
             }
         }
 
-        /* Consistent Button Styling */
+        /* Buttons & Forms */
         .btn {
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
@@ -196,7 +177,6 @@
         }
 
         .btn-fill,
-        .hero-button,
         .rsvp-btn {
             background-color: var(--primary-blue) !important;
             color: var(--primary-gold) !important;
@@ -204,26 +184,40 @@
         }
 
         .btn-fill:hover,
-        .hero-button:hover,
         .rsvp-btn:hover {
             background-color: var(--primary-gold) !important;
             color: var(--primary-blue) !important;
             border-color: var(--primary-blue) !important;
         }
 
-        /* --- Events (Informações) Section --- */
+        .rsvp {
+            background-color: var(--primary-gold);
+            padding: 80px 0;
+        }
+
+        .rsvp h2,
+        .rsvp h3 {
+            color: var(--primary-blue);
+        }
+
+        .form-input-group input {
+            background-color: #fff !important;
+            border-color: var(--primary-blue) !important;
+            color: var(--text-dark) !important;
+        }
+
+        .form-input-group input::placeholder {
+            color: #999;
+        }
+
+        .form-input-group i {
+            color: var(--primary-blue);
+        }
+
+        /* Events Section */
         .events .row {
             display: flex;
             flex-wrap: wrap;
-        }
-
-        .events .leftcol,
-        .events .rightcol {
-            padding: 20px;
-        }
-
-        .events h3 {
-            margin-top: 0;
         }
 
         .events .wp3,
@@ -243,7 +237,7 @@
             margin-top: auto;
         }
 
-        /* --- Countdown Section --- */
+        /* Countdown */
         #countdown {
             font-size: 1.5em;
             font-weight: bold;
@@ -267,60 +261,23 @@
             }
         }
 
-        /* --- RSVP Section --- */
-        .rsvp {
-            background-color: var(--primary-gold);
-            padding-top: 80px;
-            padding-bottom: 80px;
-        }
-
-        .rsvp h2,
-        .rsvp h3 {
-            color: var(--primary-blue);
-        }
-
-        .form-input-group input {
-            background-color: #fff !important;
-            border-color: var(--primary-blue) !important;
-            color: var(--text-dark) !important;
-        }
-
-        .form-input-group input::placeholder {
-            color: #999;
-        }
-
-        .form-input-group i {
-            color: var(--primary-blue);
-        }
-
-        /* --- Add to Calendar Button Styling --- */
+        /* Add to Calendar Button */
         .cal-btn {
             display: inline-block;
             padding: 10px 20px;
             margin: 5px;
-            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             text-decoration: none;
             border-radius: 4px;
-            transition: all 0.3s ease;
-            background-color: var(--primary-blue);
-            color: var(--primary-gold) !important;
-            border: 2px solid var(--primary-gold);
             cursor: pointer;
-        }
-
-        .cal-btn:hover {
-            background-color: var(--primary-gold);
-            color: var(--primary-blue) !important;
-            border-color: var(--primary-blue);
-            transform: translateY(-2px);
+            transition: all 0.3s ease;
         }
 
         .cal-btn i {
             margin-right: 8px;
         }
 
-        /* --- Slideshow Section --- */
+        /* Slideshow */
         .slideshow-container {
             position: relative;
             max-width: 900px;
@@ -345,11 +302,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .slide:hover img {
-            transform: scale(1.05);
         }
 
         .slideshow-nav {
@@ -364,12 +316,7 @@
             font-size: 18px;
             border: none;
             user-select: none;
-            transition: background-color 0.3s ease;
             z-index: 10;
-        }
-
-        .slideshow-nav:hover {
-            background: #fff;
         }
 
         .slideshow-prev {
@@ -409,14 +356,9 @@
             .slide {
                 height: 300px;
             }
-
-            .slideshow-nav {
-                padding: 12px;
-                font-size: 16px;
-            }
         }
 
-        /* --- Footer and Scroll-to-Top Button --- */
+        /* Footer and ORIGINAL Scroll-to-Top Button */
         footer {
             background-color: var(--primary-blue);
         }
@@ -425,53 +367,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Give it height so the fixed button doesn't overlap content */
             min-height: 80px;
         }
 
-        /* --- Enhanced Scroll-to-Top Button --- */
         .to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary-blue);
-            color: var(--primary-gold) !important;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-gold);
-            text-align: center;
-            font-size: 24px;
-            line-height: 46px;
-            /* Vertically center icon */
-            z-index: 100;
-
-            /* Hide it by default */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        /* This class is added by JavaScript to show the button */
-        .to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            color: var(--primary-gold);
+            font-size: 28px;
+            text-decoration: none;
+            transition: transform 0.2s ease, color 0.2s ease;
         }
 
         .to-top:hover {
-            background-color: var(--primary-gold);
-            color: var(--primary-blue) !important;
-            transform: scale(1.1);
-        }
-
-        .to-top:active {
-            transform: scale(0.95);
+            color: var(--background-light);
+            transform: scale(1.2);
         }
     </style>
-
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 
 <body id="top">
@@ -526,7 +436,7 @@
                         <h3>Cerimónia</h3>
                         <h5>Igreja Matriz de Espinho <span class="time">13:45 Horas</span></h5>
                         <p>A cerimónia religiosa será na Igreja Matriz de Espinho.</p>
-                        <a class="btn btn-fill btn-small"
+                        <a class="btn btn-fill"
                             href="https://www.google.com/maps/search/?api=1&query=Igreja+Matriz+de+Espinho"
                             target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
@@ -538,7 +448,7 @@
                         <h3>Copo de Água</h3>
                         <h5>Quinta Cardeal <span class="time">16:00 Horas</span></h5>
                         <p>A festa continuará em Vila do Conde, na Quinta Cardeal, um espaço acolhedor.</p>
-                        <a class="btn btn-fill btn-small"
+                        <a class="btn btn-fill"
                             href="https://www.google.com/maps/search/?api=1&query=Quinta+Cardeal+Vila+do+Conde"
                             target="_blank" rel="noopener">
                             <i class="fa fa-map"></i> Abrir Mapa
@@ -549,9 +459,9 @@
                     <div class="wp3">
                         <h3>Onde Ficar</h3>
                         <p>Queremos que aproveitem cada momento da festa sem preocupações! Para descansarem perto da
-                            quinta, explorem as opções de hotéis na zona. </p>
-                        <a class="btn btn-fill btn-small"
-                            href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&label=gog235jc-1DCAsouwFCFWNhc2EtZGEtY2VyY2EtZm9ybmVsb0gfWANouwGIAQKYAR-4AQnIARHYAQPoAQH4AQKIAgGoAgO4Ao7akb8GwAIB0gIkYWI1ZWVlZTItNGFkMi00OWI1LWE3MmItYTc3YTY0ZjAwODk52AIE4AIB&sid=8f54bcaae76864175dfd89d75a460542&aid=356980&lang=pt-pt&sb=1&src_elem=sb&src=city&dest_id=-2179489&dest_type=city&checkin=2026-05-08&checkout=2026-05-09&sb_lp=1"
+                            quinta, explorem as opções de hotéis na zona.</p>
+                        <a class="btn btn-fill"
+                            href="https://www.booking.com/searchresults.pt-pt.html?ss=Vila%20do%20Conde&group_adults=2&group_children=0&no_rooms=1&ssne=Vila%20do%20Conde&ssne_untouched=Vila%20do%20Conde&sb_changed_dates=1&checkin=2026-05-08&checkout=2026-05-09"
                             target="_blank" rel="noopener">
                             <i class="fa fa-bed"></i> Booking
                         </a>
@@ -593,18 +503,9 @@
                                         aria-label="Close"><span>×</span></button>
                                     <div class="section-padding">
                                         <h3>Obrigado!</h3>
-                                        <p>Estamos muito contentes por te juntares a nós neste momento!</p>
-                                        <div id="add-to-cal">
-                                            <h4>Adicionar ao Calendário:</h4>
-
-                                            <a class="cal-btn" id="google-cal-link" href="#">
-                                                <i class="fa fa-google"></i> Google Calendar
-                                            </a>
-
-                                            <a class="cal-btn" id="ical-link" download="casamento_matilde_simao.ics">
-                                                <i class="fa fa-apple"></i> Apple / iOS Calendar
-                                            </a>
-                                        </div>
+                                        <p>A vossa presença foi confirmada. Estamos muito contentes por se juntarem a
+                                            nós!</p>
+                                        <div id="add-to-cal"></div>
                                     </div>
                                 </div>
                             </div>
@@ -612,8 +513,8 @@
                     </div>
 
                     <h2>Confirmação de Presença</h2>
-                    <h3>Por favor confirmar até 31-01-2026</h3>
-                    <form id="rsvp-form" class="rsvp-form" action="" method="POST">
+                    <h3>Por favor, confirmar até 31 de janeiro de 2026</h3>
+                    <form id="rsvp-form" class="rsvp-form">
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-input-group"><i class="fa fa-user"></i><input name="name"
@@ -636,13 +537,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
-                                <div class="form-input-group"><i class="fa fa-key"></i><input type="number"
-                                        name="invite_code" id="invite_code" min="0" placeholder="Código do convite">
+                                <div class="form-input-group"><i class="fa fa-key"></i><input type="password"
+                                        name="invite_code" id="invite_code" placeholder="Código do convite" required>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-input-group"><i class="fa fa-cutlery"></i><input name="allergies"
-                                        placeholder="Restrições alimentar?"></div>
+                                        placeholder="Restrições alimentares?"></div>
                             </div>
                         </div>
                         <div class="row">
@@ -654,7 +555,7 @@
                         <div class="row">
                             <div class="col-md-12" id="alert-wrapper"></div>
                         </div>
-                        <button class="btn-fill rsvp-btn">Confirmo a presença!</button>
+                        <button type="submit" class="btn-fill rsvp-btn">Confirmo a presença!</button>
                     </form>
                 </div>
             </div>
@@ -673,26 +574,21 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="slideshow-container">
-                        <div class="slide"><img src="img/00.jpeg" alt="Foto da nossa história 0" loading="lazy"></div>
+                        <div class="slide active"><img src="img/00.jpeg" alt="Foto da nossa história 0" loading="lazy">
+                        </div>
                         <div class="slide"><img src="img/11.jpg" alt="Foto da nossa história 1" loading="lazy"></div>
                         <div class="slide"><img src="img/22.jpeg" alt="Foto da nossa história 2" loading="lazy"></div>
                         <div class="slide"><img src="img/33.jpeg" alt="Foto da nossa história 3" loading="lazy"></div>
                         <div class="slide"><img src="img/44.jpeg" alt="Foto da nossa história 4" loading="lazy"></div>
                         <div class="slide"><img src="img/55.jpeg" alt="Foto da nossa história 5" loading="lazy"></div>
                         <div class="slide"><img src="img/66.jpg" alt="Foto da nossa história 6" loading="lazy"></div>
-
                         <button class="slideshow-nav slideshow-prev" aria-label="Anterior">❮</button>
                         <button class="slideshow-nav slideshow-next" aria-label="Seguinte">❯</button>
                     </div>
-
                     <div class="dots-container">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span
+                            class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                            class="dot"></span>
                     </div>
                 </div>
             </div>
@@ -703,194 +599,164 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center content">
-                    <span class="to-top-wrapper"><a href="#top" class="to-top" id="to-top-btn"><i
-                                class="fa fa-angle-up"></i></a></span>
+                    <span class="to-top-wrapper"><a href="#top" class="to-top"><i class="fa fa-angle-up"></i></a></span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/jquery.fancybox.pack.js"></script>
+    <script src="js/jquery.flexslider-min.js"></script>
 
-    <script src="js/vendor/bootstrap.min.js" defer></script>
-    <script src="js/jquery.fancybox.pack.js" defer></script>
-    <script src="js/jquery.flexslider-min.js" defer></script>
-    <script src="js/vendor/ouical.js" defer></script>
+    <script>
+        $(document).ready(function () {
+            // --- ALL CUSTOM JAVASCRIPT IS NOW INTEGRATED HERE ---
 
-    <script src="js/scripts.min.js" defer></script>
-
-    <script defer>
-        document.addEventListener('DOMContentLoaded', function () {
-
-            // --- Wedding Event Details (Centralized) ---
+            // --- Event Details ---
             const eventDetails = {
                 title: "Casamento Matilde e Simão",
                 startTime: new Date("2026-05-08T13:45:00"),
                 endTime: new Date("2026-05-09T04:00:00"),
-                location: "Igreja Matriz de Espinho, Espinho, Portugal",
-                description: "Casamento de Matilde e Simão.\n\n13:45: Cerimónia na Igreja Matriz de Espinho.\n16:00: Copo de água na Quinta Cardeal.\n\nMais informações no site!"
+                location: "Igreja Matriz de Espinho & Quinta Cardeal",
+                description: "Casamento de Matilde e Simão.\n\n13:45: Cerimónia na Igreja Matriz de Espinho.\n16:00: Copo de água na Quinta Cardeal."
             };
 
-            // --- Function to Trigger the 'Add to Calendar' Modal ---
-            function showCalendarModal() {
+            // --- NEW: Helper Function to Create Calendar Buttons ---
+            function populateCalendarButtons() {
                 const toUtcISO = date => date.toISOString().replace(/-|:|\.\d+/g, '');
+                const $container = $('#add-to-cal');
+                $container.html('<h4>Adicionar ao Calendário:</h4>');
 
-                // 1. Apple / iOS Calendar (.ics file)
-                const iCalLink = document.getElementById('ical-link');
-                if (iCalLink && typeof ouical !== 'undefined') {
-                    const calendar = ouical({
-                        title: eventDetails.title,
-                        start: eventDetails.startTime,
-                        end: eventDetails.endTime,
-                        address: eventDetails.location,
-                        description: eventDetails.description
-                    });
-                    iCalLink.href = encodeURI("data:text/calendar;charset=utf8," + calendar.generate());
-                }
+                // 1. Create iCal/.ics Link (for Apple, Outlook, etc.)
+                const icsData = [
+                    'BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT',
+                    'URL:' + document.URL,
+                    'DTSTART:' + toUtcISO(eventDetails.startTime),
+                    'DTEND:' + toUtcISO(eventDetails.endTime),
+                    'SUMMARY:' + eventDetails.title,
+                    'DESCRIPTION:' + eventDetails.description,
+                    'LOCATION:' + eventDetails.location,
+                    'END:VEVENT', 'END:VCALENDAR'
+                ].join('\n');
 
-                // 2. Google Calendar (with mobile app logic)
-                const googleLink = document.getElementById('google-cal-link');
-                if (googleLink) {
-                    const webUrl = new URL("https://www.google.com/calendar/render");
-                    webUrl.searchParams.append("action", "TEMPLATE");
-                    webUrl.searchParams.append("text", eventDetails.title);
-                    webUrl.searchParams.append("dates", `${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}`);
-                    webUrl.searchParams.append("details", eventDetails.description);
-                    webUrl.searchParams.append("location", eventDetails.location);
+                $('<a>', {
+                    class: 'btn-fill cal-btn',
+                    href: encodeURI('data:text/calendar;charset=utf8,' + icsData),
+                    download: 'casamento_matilde_simao.ics',
+                    html: '<i class="fa fa-apple"></i> Apple / Outros'
+                }).appendTo($container);
 
-                    googleLink.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const userAgent = navigator.userAgent;
+                // 2. Create Google Calendar Link (with mobile logic)
+                const googleWebUrl = new URL("https://www.google.com/calendar/render");
+                googleWebUrl.searchParams.append("action", "TEMPLATE");
+                googleWebUrl.searchParams.append("text", eventDetails.title);
+                googleWebUrl.searchParams.append("dates", `${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}`);
+                googleWebUrl.searchParams.append("details", eventDetails.description);
+                googleWebUrl.searchParams.append("location", eventDetails.location);
 
-                        if (/android/i.test(userAgent)) {
-                            const intentUrl = `intent://#Intent;action=android.intent.action.INSERT;data=content://com.android.calendar/events;S.title=${encodeURIComponent(eventDetails.title)};S.description=${encodeURIComponent(eventDetails.description)};S.eventLocation=${encodeURIComponent(eventDetails.location)};L.beginTime=${eventDetails.startTime.getTime()};L.endTime=${eventDetails.endTime.getTime()};S.browser_fallback_url=${encodeURIComponent(webUrl.toString())};end`;
-                            window.location.href = intentUrl;
-                        } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-                            const appUrl = new URL("googlecalendar://co");
-                            appUrl.searchParams.append("action", "CREATE_EVENT");
-                            appUrl.searchParams.append("text", eventDetails.title);
-                            appUrl.searchParams.append("dates", `${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}`);
-                            appUrl.searchParams.append("details", eventDetails.description);
-                            appUrl.searchParams.append("location", eventDetails.location);
-                            window.location.href = appUrl.toString();
-                            setTimeout(function () {
-                                window.open(webUrl.toString(), '_blank');
-                            }, 2500);
-                        } else {
-                            window.open(webUrl.toString(), '_blank');
-                        }
-                    });
-                }
-
-                // Finally, show the Bootstrap modal
-                $('#rsvp-modal').modal('show');
-            }
-
-            // --- RSVP Form Submission Handler ---
-            const rsvpForm = document.getElementById('rsvp-form');
-            if (rsvpForm) {
-                rsvpForm.addEventListener('submit', function (e) {
+                $('<a>', {
+                    class: 'btn-fill cal-btn',
+                    href: '#',
+                    html: '<i class="fa fa-google"></i> Google'
+                }).on('click', function (e) {
                     e.preventDefault();
-                    showCalendarModal();
-                });
+                    const userAgent = navigator.userAgent;
+                    if (/android/i.test(userAgent)) {
+                        const intentUrl = `intent://#Intent;action=android.intent.action.INSERT;data=content://com.android.calendar/events;S.title=${encodeURIComponent(eventDetails.title)};S.description=${encodeURIComponent(eventDetails.description)};S.eventLocation=${encodeURIComponent(eventDetails.location)};L.beginTime=${eventDetails.startTime.getTime()};L.endTime=${eventDetails.endTime.getTime()};S.browser_fallback_url=${encodeURIComponent(googleWebUrl.toString())};end`;
+                        window.location.href = intentUrl;
+                    } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+                        const appUrl = `googlecalendar://co?action=CREATE_EVENT&text=${encodeURIComponent(eventDetails.title)}&dates=${toUtcISO(eventDetails.startTime)}/${toUtcISO(eventDetails.endTime)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
+                        window.location.href = appUrl;
+                        setTimeout(() => window.open(googleWebUrl.toString(), '_blank'), 2500);
+                    } else {
+                        window.open(googleWebUrl.toString(), '_blank');
+                    }
+                }).appendTo($container);
             }
+
+            // --- UPDATED: RSVP Form Submission ---
+            $('#rsvp-form').on('submit', function (e) {
+                e.preventDefault();
+                var data = $(this).serialize();
+                var $alertWrapper = $('#alert-wrapper');
+
+                function alert_markup(type, msg) {
+                    return `<div class="alert alert-${type}" role="alert">${msg}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>×</span></button></div>`;
+                }
+
+                $alertWrapper.html(alert_markup('info', '<strong>Aguarde...</strong> A verificar os seus dados.'));
+
+                if (parseInt($('#invite_code').val(), 10) !== 8526) {
+                    $alertWrapper.html(alert_markup('danger', '<strong>Código de convite incorreto.</strong> Por favor, verifique e tente novamente.'));
+                    return;
+                }
+
+                $.post('https://script.google.com/macros/s/AKfycbxQ44d3i2E6JhdVvaPxjPgiYmF_qWNvv-36563836Jsu38X2aKyLDPQFeYQTBo_X5wpOg/exec', data)
+                    .done(function (response) {
+                        if (response.result === "error") {
+                            $alertWrapper.html(alert_markup('danger', response.message));
+                        } else {
+                            $alertWrapper.html('');
+                            populateCalendarButtons(); // Generate buttons before showing modal
+                            $('#rsvp-modal').modal('show');
+                        }
+                    })
+                    .fail(function () {
+                        $alertWrapper.html(alert_markup('danger', '<strong>Desculpe!</strong> Ocorreu um erro de comunicação. Por favor, tente novamente mais tarde.'));
+                    });
+            });
 
             // --- Countdown Timer ---
-            const countdownElement = document.getElementById("countdown");
-            if (countdownElement) {
+            const $countdown = $("#countdown");
+            if ($countdown.length) {
                 const countDownDate = new Date("2026-05-08T13:45:00").getTime();
-                const interval = setInterval(function () {
+                setInterval(function () {
                     const now = new Date().getTime();
                     const distance = countDownDate - now;
-
                     if (distance < 0) {
-                        clearInterval(interval);
-                        countdownElement.innerHTML = "O grande dia chegou!";
+                        clearInterval(this);
+                        $countdown.html("O grande dia chegou!");
                         return;
                     }
                     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                    $countdown.html(`${days}d ${hours}h ${minutes}m ${seconds}s`);
                 }, 1000);
             }
 
             // --- Slideshow ---
-            const slideshowContainer = document.querySelector('.slideshow-container');
-            if (slideshowContainer) {
-                let currentSlideIndex = 0;
-                const slides = document.querySelectorAll('.slide');
-                const dots = document.querySelectorAll('.dot');
-                const prevButton = document.querySelector('.slideshow-prev');
-                const nextButton = document.querySelector('.slideshow-next');
-                let slideInterval;
-
+            const $slideshow = $('.slideshow-container');
+            if ($slideshow.length) {
+                let currentIndex = 0;
+                const $slides = $('.slide');
+                const $dots = $('.dot');
+                let slideInterval = setInterval(nextSlide, 4000);
                 function showSlide(index) {
-                    if (slides.length === 0) return;
-                    currentSlideIndex = (index + slides.length) % slides.length;
-
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    dots.forEach(dot => dot.classList.remove('active'));
-
-                    slides[currentSlideIndex].classList.add('active');
-                    dots[currentSlideIndex].classList.add('active');
+                    currentIndex = (index + $slides.length) % $slides.length;
+                    $slides.removeClass('active').eq(currentIndex).addClass('active');
+                    $dots.removeClass('active').eq(currentIndex).addClass('active');
                 }
-
-                function startAutoSlide() {
-                    clearInterval(slideInterval);
-                    slideInterval = setInterval(() => {
-                        showSlide(currentSlideIndex + 1);
-                    }, 4000);
-                }
-
-                if (prevButton) {
-                    prevButton.addEventListener('click', () => {
-                        showSlide(currentSlideIndex - 1);
-                        startAutoSlide();
-                    });
-                }
-
-                if (nextButton) {
-                    nextButton.addEventListener('click', () => {
-                        showSlide(currentSlideIndex + 1);
-                        startAutoSlide();
-                    });
-                }
-
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        showSlide(index);
-                        startAutoSlide();
-                    });
-                });
-
-                slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
-                slideshowContainer.addEventListener('mouseleave', startAutoSlide);
-
-                if (slides.length > 0) {
-                    showSlide(0);
-                    startAutoSlide();
-                }
+                function nextSlide() { showSlide(currentIndex + 1); }
+                function prevSlide() { showSlide(currentIndex - 1); }
+                function resetInterval() { clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 4000); }
+                $('.slideshow-next').on('click', () => { nextSlide(); resetInterval(); });
+                $('.slideshow-prev').on('click', () => { prevSlide(); resetInterval(); });
+                $dots.on('click', function () { showSlide($(this).index()); resetInterval(); });
+                $slideshow.on('mouseenter', () => clearInterval(slideInterval)).on('mouseleave', () => resetInterval());
             }
 
-            // --- Scroll-to-Top Button Logic ---
-            const toTopButton = document.getElementById('to-top-btn');
-            if (toTopButton) {
-                window.addEventListener('scroll', function () {
-                    if (window.scrollY > 300) {
-                        toTopButton.classList.add('visible');
-                    } else {
-                        toTopButton.classList.remove('visible');
-                    }
-                });
-
-                toTopButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    $('html, body').animate({ scrollTop: 0 }, 500);
-                });
-            }
+            // --- Original Waypoints and Flexslider (from scripts.min.js) ---
+            $('.wp1').waypoint(function () { $('.wp1').addClass('animated fadeInLeft'); }, { offset: '75%' });
+            $('.wp2').waypoint(function () { $('.wp2').addClass('animated fadeInRight'); }, { offset: '75%' });
+            $('.wp3').waypoint(function () { $('.wp3').addClass('animated fadeInLeft'); }, { offset: '75%' });
+            $('.wp4').waypoint(function () { $('.wp4').addClass('animated fadeInRight'); }, { offset: '75%' });
+            $('.flexslider').flexslider({ animation: "slide" });
+            $('.fancybox').fancybox({ padding: 4 });
         });
     </script>
 </body>
