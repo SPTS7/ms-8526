@@ -625,31 +625,37 @@
             };
 
             // --- NEW: Helper Function to Create Calendar Buttons ---
+            // --- Helper Function to Create Calendar Buttons ---
             function populateCalendarButtons() {
                 const toUtcISO = date => date.toISOString().replace(/-|:|\.\d+/g, '');
                 const $container = $('#add-to-cal');
-                $container.html('<h4>Adicionar ao Calendário:</h4>');
+                $container.html('<h4>Adicionar ao Calendário:</h4>'); // Clear and add title
 
-                // 1. Create iCal/.ics Link (for Apple, Outlook, etc.)
+                // --- Create Universal .ics Data (used by Apple and Others) ---
                 const icsData = [
-                    'BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT',
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'BEGIN:VEVENT',
                     'URL:' + document.URL,
                     'DTSTART:' + toUtcISO(eventDetails.startTime),
                     'DTEND:' + toUtcISO(eventDetails.endTime),
                     'SUMMARY:' + eventDetails.title,
                     'DESCRIPTION:' + eventDetails.description,
                     'LOCATION:' + eventDetails.location,
-                    'END:VEVENT', 'END:VCALENDAR'
+                    'END:VEVENT',
+                    'END:VCALENDAR'
                 ].join('\n');
+                const icsHref = encodeURI('data:text/calendar;charset=utf8,' + icsData);
 
+                // --- 1. Create Apple Button ---
                 $('<a>', {
                     class: 'btn-fill cal-btn',
-                    href: encodeURI('data:text/calendar;charset=utf8,' + icsData),
+                    href: icsHref,
                     download: 'casamento_matilde_simao.ics',
-                    html: '<i class="fa fa-apple"></i> Apple / Outros'
+                    html: '<i class="fa fa-apple"></i> Apple'
                 }).appendTo($container);
 
-                // 2. Create Google Calendar Link (with mobile logic)
+                // --- 2. Create Google Button ---
                 const googleWebUrl = new URL("https://www.google.com/calendar/render");
                 googleWebUrl.searchParams.append("action", "TEMPLATE");
                 googleWebUrl.searchParams.append("text", eventDetails.title);
@@ -674,6 +680,14 @@
                     } else {
                         window.open(googleWebUrl.toString(), '_blank');
                     }
+                }).appendTo($container);
+
+                // --- 3. Create Others Button ---
+                $('<a>', {
+                    class: 'btn-fill cal-btn',
+                    href: icsHref,
+                    download: 'casamento_matilde_simao.ics',
+                    html: '<i class="fa fa-calendar-plus-o"></i> Outros'
                 }).appendTo($container);
             }
 
