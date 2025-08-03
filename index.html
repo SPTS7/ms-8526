@@ -702,7 +702,7 @@
                     return;
                 }
 
-                $.post('https://script.google.com/macros/s/AKfycbxQ44d3i2E6JhdVvaPxjPgiYmF_qWNvv-36563836Jsu38X2aKyLDPQFeYQTBo_X5wpOg/exec', data)
+                $.post('https://script.google.com/macros/s/AKfycbzdaEUxAHFrz3hozFL618L4HL8_6GL2PHlib9C7hhCU2vMdVYPkI6AZEh5FxJFPXCmHCA/exec', data)
                     .done(function (response) {
                         if (response.result === "error") {
                             $alertWrapper.html(alert_markup('danger', response.message));
